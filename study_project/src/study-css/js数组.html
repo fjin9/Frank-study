@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>Document</title>
+	</head>
+	<body>
+		
+	</body>
+	<script !src = "">
+		
+		//1.创建数组
+		//方法1 常规方法
+		var myCars = new Array();
+		myCars[0] = 'BMW';
+		myCars[1] = 'Audi';
+		myCars[2] = 'Toyota';
+		myCars[3] = 'Lotus';
+		
+		console.log(myCars);
+		
+		//方法2 简洁方法
+		var myPets = new Array('cat', 'dog', 'bird');
+		console.log(myPets);
+		
+		//方法3 数组字面量
+		var myDevice = ['iPhone', 'laptop', 'air pods', 'apple watch'];
+		console.log(myDevice);
+		
+		//在一个数组中可以有不同的对象
+		const myAry = [
+			'string',
+			{
+				name: 'alex',
+				age: 20
+			},
+			[ '1', '2', '3', '4'],
+			function fn(){
+				return 'hello'
+			}
+		];
+		
+		console.log(myAry);
+		
+		//2.访问数组
+		const myFirstCar = myCars[0];
+		console.log(myFirstCar);
+		
+		//3.修改数组元素
+		myCars[0] = 'Nissan';
+		console.log(myCars);
+		
+		//数组的对象方法
+		//concat()  该方法不会改变现有的数组，返回一个新的数组 
+		const ary1 = [1, 2];
+		const ary2 = [3, 4];
+		const ary3 = [5, 6];
+		const newAry = ary1.concat(ary2, ary3)
+		console.log(newAry);
+		
+		//join() 该方法用于把数组中的所有元素转换一个字符串 原数组不变
+		const ary4 = [1, 2, 3, 4];
+		console.log(ary4.join());
+		console.log(ary4.join('-'));
+		
+		//push 该方法从数组末尾向数组添加元素 并返回新的长度
+		const ary5 = ['a', 'b', 'c'];
+		console.log(ary5.push('d', 'e')); //5
+		console.log(ary5);
+		
+		//pop该方法用于删除数组的最后一个元素 并返回删除的元素
+		const ary6 = [1, 2, 3]
+		console.log(ary6.pop()); //3
+		console.log(ary6);
+		
+		//shift() 该方法用于删除数组的第一个元素 并返回第一个元素的值
+		const ary7 = ['a', 'b', 'c', 'd'];
+		console.log(ary7.shift()); //a
+		
+		//unshift() 该方法向数组的开头添加一个或更多元素 并返回新的长度
+		const ary8 = ['alex', 'bill', 'jack'];
+		console.log(ary8.unshift('frank', 'lily')); //5
+		console.log(ary8); //['frank', 'lily', 'alex', 'bill', 'jack']
+		
+		//sort() 
+		//该方法用于对数组的元素进行排序
+		//该方法改变原数组
+		const ary9 = [23, 3, 52, 68, 10, 4];
+		const ary10 = ['a', 'd', 'e', 'c', 'b'];
+		//注意 默认情况下 sort()方法将按字母的升序将值作为子字符串进行排序
+		//这适用于字符串（"Apple" 出现在 "Banana" 之前）。
+		//但是，如果数字按字符串排序，则 "23" 大于 "10" ，因为 "2" 大于 "1"
+		//正因为如此，sort() 方法在对数字进行排序时会产生不正确的结果
+		console.log(ary9.sort()); //[10, 23, 3, 4, 52, 68]
+		console.log(ary10.sort());
+		
+		//通过比较函数来解决上述的问题
+		console.log(ary9.sort((a, b) => b - a)); //降序
+		console.log(ary9.sort((a, b) => a - b)); //升序
+		
+		
+		//reverse() 该方法用于颠倒数组中元素的顺序 改变原数组
+		const ary11 = [1, 2, 3, 4, 5];
+		console.log(ary11.reverse());
+		console.log(ary11);
+		
+		//slice()
+		//返回从原数组中指定开始下标到结束下标之间的项组成的新数组
+		//该方法接受两个参数，即要返回的起始和结束位置
+		//只有一个参数的情况下 slice()方法返回从该参数指定位置开始到当前数组末尾的所有项
+		//如果有两个参数 该方法返回起始和结束位置之间的项 但不包括结束位置的项
+		//不改变原数组
+		const ary12 = ['a', 'b', 'c', 'd', 'e'];
+		console.log(ary12.slice(3)); //['d', 'e']
+		console.log(ary12.slice(0,2)); //['a', 'b']
+		console.log(ary12); //['a', 'b', 'c', 'd', 'e']
+		
+		//splice() 很强大的数组方法，有很多种用大，可以实现删除 插入和替换
+		//1.删除元素 并返回删除的元素 改变原数组
+		const ary13 = ['a', 'b', 'c', 'd'];
+		console.log(ary13.splice(0,2)); //['a', 'b']
+		console.log(ary13); //['c', 'd']
+		
+		//2.向指定索引处添加元素
+		//需要提供3个参数 起始位置 0(要删除的项数) 要插入的项
+		//列如 splice(2, 0 , 4, 6) 会从当前数组的位置2开始插入4和6
+		//改变原数组 返回的四一个空数组
+		const ary14 = ['a', 'b', 'c', 'd'];
+		console.log(ary14.splice(1, 0, 'dd', 'kk')); //[]
+		console.log(ary14); //['a', 'dd', 'kk', 'b', 'c', 'd']
+		
+		//3.替换指定索引位置的元素
+		//需要指定3个参数 起始位置 要删除的项数 要插入的任意数量的项 (插入的项数不必与删除的项数相等)
+		//列如 splice(2, 1, 4, 6)会删除当前数组位置2的项，然后再从位置2开始插入4和6
+		//改变原数组 返回的是删除元素的数组
+		const ary15 = [1, 2, 3, 4];
+		console.log(ary15.splice(1, 2, 8, 9)); //[2, 3]
+		console.log(ary15); //[1, 8, 9, 4]
+		
+		//indexOf()
+		//从数组的开头开始向后查找
+		//接受两个参数：要查找的项和(可选的)表示查找起点位置的索引
+		//返回要查找的项在数组中的位置， 没有返回-1
+		const ary16 = [1, 5, 3, 4, 5, 6, 7];
+		console.log(ary16.indexOf(5)); //1
+		console.log(ary16.indexOf(10)); //-1
+		console.log(ary16.indexOf(5,2)); //4
+		
+		//lastIndexOf()
+		//同上 从数组的末尾向前查找
+		console.log(ary16.lastIndexOf(5)); //4
+		console.log(ary16.lastIndexOf(5, 3)); //1
+		
+		
+		//forEach()
+		//对数组进行遍历循环，对数组中的每一项运行给定的函数 没有返回值 参数是function类型
+		//不改变原数组
+		//箭头函数
+		const ary17 = [1, 2, 3, 4];
+		console.log(ary17.forEach((item) => {return item * 2})); //undefined 没有返回值
+		ary17.forEach((item, index) => {
+			if(item === 3){
+				return
+			}
+			console.log(item, index);
+		})
+		// 1 0
+		// 2 1 
+		// 4 3
+		
+		//map() 
+		//该方法返回一个新的数组，数组中的元素为原始数组元素调用函数处理后的值
+		//按照原始数组的元素顺序依次处理元素
+		//该方法不改变原数组
+		const ary18 = [1, 2, 3, 4, 5];
+		const aryAfterMap = ary18.map((item, index) => {
+			return item * 2
+		})
+		console.log(aryAfterMap); //[2, 4, 6, 8, 10]
+		console.log(ary18); //[1, 2, 3, 4, 5]
+		
+		
+		//filter() 
+		//'过滤'功能，数组中的每一项运行给定的函数，返回满足过滤条件的数组
+		//不改变原数组
+		const ary19 = [
+			{
+				id: 1,
+				name: 'frank',
+				age: 15,
+				gender: 'male',
+			},
+			{
+				id: 2,
+				name: 'alex',
+				age: 28,
+				gender: 'female'
+			},
+			{
+				id: 3,
+				name: 'jack',
+				age: 22,
+				gender : 'male',
+			},
+			{
+				id: 4,
+				name: 'lucy',
+				age: 21,
+				gender : 'female'
+			},
+		];
+		
+		const aryAfterFilter = ary19.filter((item) => {
+			if(item.gender === 'male')
+			{
+				return item
+			}
+		})
+		
+		console.log(aryAfterFilter);
+		console.log(ary19);
+		
+		//includes() es7新增
+		//该方法用来判断数组是否包含一个指定的值， 如果是返回true，否则返回false
+		//接收两个参数, 需要查找的元素的值(必填) 开始查找元素的位置(可选)
+		const ary20 = ['a', 'c', 'd'];
+		console.log(ary20.includes('a')); //true
+		console.log(ary20.includes('a', 1)); //false
+		
+		//reduce()
+		//该方法对数组中的每个元素按序执行一个由您提供的 reducer 函数
+		//每一次运行 reducer 会将先前元素的计算结果作为参数传入
+		//最后将其结果汇总为单个返回值
+		//不改变原数组
+		const ary21 = [1, 2, 3, 4];
+		const reduce = ary21.reduce((a, b) => a + b, 0) 
+		console.log(reduce); //10
+		console.log(ary21);
+		
+		const ary22 = [
+			{
+				good: 'apple',
+				price: 10,
+			},
+			{
+				good: 'peach',
+				price: 14,
+			},
+			{
+				good: 'water',
+				price: 4,
+			},
+			{
+				good: 'pizza',
+				price: 20,
+			},
+		];
+		
+		const totalPrice = ary22.reduce((previousValue, currentValue) => {
+			return previousValue + currentValue.price;
+		}, 0);
+		console.log(totalPrice);
+		
+	</script>
+</html>
