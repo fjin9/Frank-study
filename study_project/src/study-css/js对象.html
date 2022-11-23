@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>Document</title>
+	</head>
+	<body>
+		
+	</body>
+	<script !src = "">
+		
+		//1.对象的定义
+		//方法1
+		var car1 = {
+			name: 'BMW',  //name: 'BMW' 是键值对， 通常被称为对象属性
+			model: 'M4',
+			color: 'Grey',
+		}
+		
+		//方法2
+		var car2 = {name: 'Toyota', model: 'supra', color: 'White'}
+		
+		//方法3 内置的构造函数创建
+		var car3 = new Object();
+		car3.name = 'Auid';
+		car3.model = 'RS6';
+		car3.color = 'Red';
+		
+		console.log(car1);
+		console.log(car2);
+		console.log(car3);
+		
+		//2.访问对象属性
+		//方法1
+		const x = car1.name;
+		console.log(x); //BMW
+		
+		//对象中未赋值的属性的值为undefined
+		console.log(car1.type); //undefined
+		
+		//方法2
+		const y = car2['model'];
+		console.log(y); //supra
+		
+		//3.对象属性的修改 添加 删除
+		//修改
+		car1.color = 'Blue';
+		console.log(car1);
+		//添加
+		car1.type = 'sedan';
+		console.log(car1);
+		//删除
+		delete car1.type;
+		console.log(car1);
+		
+		
+		//4.对象方法
+		var car = {
+			name: 'BMW',
+			model: 'M5',
+			color: 'Black',
+			fullName: function (){
+				return this.name + ' ' + this.model + ' in ' + this.color;
+			},
+		};
+		
+		//5.访问对象方法
+		const a = car.fullName() //访问了car对象的fullName()方法 输出函数的执行结果
+		console.log(a); // BMW M5 in Black
+		
+		const b = car.fullName //输出的是函数的表达式
+		console.log(b); 
+		//function (){
+		//    return this.name + ' ' + this.model + ' in ' + this.color;
+		//}
+		
+		//6.遍历对象属性
+		//for (var k in object){}
+		for (var k in car1){
+			console.log(k+ ' : ' + car1[k]);
+		}
+		
+	</script>
+</html>
