@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>Document</title>
+	</head>
+	<body>
+		
+	</body>
+	<script !src = "">
+		//JSON是用于存储和传输数据的格式
+		//JSON通常用于服务端项网页传递数据
+		//JSON是一种轻量级的数据交换格式
+		
+		//JSON实例
+		var text = '{ "sites" : [' +
+			'{ "name":"Runoob" , "url":"www.runoob.com" },' +
+			'{ "name":"Google" , "url":"www.google.com" },' +
+			'{ "name":"Taobao" , "url":"www.taobao.com" } ]}';
+		
+		console.log(text);
+		
+		//JSON.parse() 用于将一个JSON字符串转换为js对象
+		const obj = JSON.parse(text)
+		console.log(obj);
+		console.log(obj.sites);
+		
+		//JSON,sringify() 用于将js值转换为JSON字符串
+		const str = 'frank';
+		const ary = [1, 2, 3, 4];
+		const myCar = {name: 'BMW', model: 'M5', color: 'grey'}
+		const textJson = JSON.stringify(str);
+		console.log(textJson); //"frank"
+		console.log(JSON.stringify(ary)); //是一个JSON字符串
+		console.log(JSON.stringify(myCar)); //是一个JSON字符串
+	</script>
+</html>
