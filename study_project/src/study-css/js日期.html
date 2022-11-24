@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>Document</title>
+	</head>
+	<body>
+		
+	</body>
+	<script !src = "">
+		//创建Date对象
+		//new Date() 用当前日期和时间创建新的日期对象
+		const date = new Date();
+		console.log(date); //输出当前的日期时间
+		
+		//new Date(year, month, ...) 用指定日期和时间创建新的日期对象
+		//注意js从0到11计算月份
+		//一月是0 十二月是11
+		const date1 = new Date(2018, 11, 24, 10, 33, 30, 0);
+		console.log(date1);
+		
+		//toDateString() 该方法将日期转换为更易读的格式
+		const date2 = new Date();
+		console.log(date2.toDateString()); //Thu Nov 24 2022
+		
+		//getFullYear() 该方法以四位数字形式返回日期年份
+		const date3 = new Date();
+		console.log(date3.getFullYear()); //2022
+		
+		//getMonth() 该方法以数字(0-11)返回日期的月份
+		const date4 = new Date();
+		console.log(date4.getMonth() + 1);
+		
+		//getDate() 该方法以数字(1-31)返回日期的日
+		const date5 = new Date();
+		console.log(date5.getDate());
+		
+		//getDay() 该方法以数字(0-6)返回日期的星期名(weekday)
+		const date6 = new Date();
+		const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+		console.log(days[date6.getDay()]);
+		
+		//getHours() getMinutes() getSeconds() getMilliseconds()
+		
+		//日期设置方法
+		//setFullYear() setMonth() setDate() setHours() setMinutes() setSeconds()
+	</script>
+</html>

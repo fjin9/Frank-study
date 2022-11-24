@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>Document</title>
+	</head>
+	<body>
+		<p id="demo">lalala</p>
+		<div id="mydiv"></div>
+		<span class="myspan"></span>
+		<button id="myBtn">click</button>
+	</body>
+	<script !src = "">
+		//DOM(文档对象模型)
+		//当网页被加载时，浏览器会创建页面的文档对象模型
+		
+		//DOM getElementById方法
+		//访问HTML元素最常用的方法是使用元素的id
+		document.getElementById('demo')
+		
+		//DOM innerHTML属性
+		//获取元素内容最简单的方法是使用inderHmtl属性
+		//innerHtml属性可用于获取或替换HTML元素的内容
+		//innerHtml属性可用于获取或改变任何HTML元素，包括<html> 和 <body>
+		console.log(document.getElementById('demo').innerHTML); //lalala
+		document.getElementById('demo').innerHTML = 'Hello World!';
+		
+		//DOM Document对象
+		//文档对象代表网页
+		//如果要访问HTML页面中的任何元素。要从访问document对象开始
+		//查找HTML元素
+		document.getElementById('id') //通过元素id来查找元素
+		document.getElementsByTagName('name') //通过标签名来查找元素
+		document.getElementsByClassName('name') //通过类名来查找元素
+		
+		//改变HTML元素
+		//element.innerHTML = new html;                    content	改变元素的 inner HTML
+		//element.attribute = new value;	                  改变 HTML 元素的属性值
+		//element.setAttribute(attribute, value);	         改变 HTML 元素的属性值
+		//element.style.property = new style;	            改变 HTML 元素的样式
+		
+		document.getElementById('mydiv').innerHTML = 'div';
+		document.getElementsByClassName('myspan') //返回的是一个数组
+		document.getElementsByClassName('myspan')[0]
+		document.getElementsByTagName('div') //返回的是一个数组
+		
+		//添加和删除元素
+		//document.createElement(element)	 //创建 HTML 元素
+		//document.removeChild(element)	 //删除 HTML 元素
+		//document.appendChild(element)	 //添加 HTML 元素
+		//document.replaceChild(element)	//替换 HTML 元素
+		//document.write(text)	 //写入 HTML 输出流
+		const btn = document.createElement('button');
+		document.body.appendChild(btn);
+		document.body.removeChild(document.getElementById('mydiv'));
+		
+		//添加事件处理程序
+		document.getElementById('demo').onclick = function (){
+			alert('Hello!')
+		};
+		
+		//addEventListener() 方法
+		document.getElementById('myBtn').addEventListener('click', function (){
+			alert('button clicked!')
+		});
+		
+		//可以向同个元素添加多个事件处理程序
+		document.getElementById('myBtn').addEventListener('mouseover', function () {
+			console.log('mouse over');
+		})
+	</script>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>Document</title>
+	</head>
+	<body>
+		
+	</body>
+	<script !src = "">
+		//所有不具有"真实"值的即为False
+		//0的布尔值为false
+		const num1 = 0;
+		console.log(Boolean(num1)); //false
+		
+		//-0的布尔值为false
+		const num2 = -0;
+		console.log(Boolean(num2));
+		
+		//""(空值)的布尔值为false
+		const str1 = "";
+		console.log(Boolean(str1));
+		
+		//undefined的布尔值是false
+		const str2 = undefined;
+		console.log(Boolean(str2));
+		
+		//null的布尔值是false
+		const str3 = null;
+		console.log(Boolean(str3));
+		
+		//NaN的布尔值是false
+		const str4 = 10 / 'H';
+		console.log(Boolean(str4));
+	</script>
+</html>

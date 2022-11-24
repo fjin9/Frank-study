@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>Document</title>
+	</head>
+	<body>
+		
+	</body>
+	<script !src = "">
+		//小数的最大数是17位，但是浮点的算数并不总是100%精准
+		const x = 0.2 + 0.1
+		console.log(x); // x 将是0.30000000000000004
+		
+		//NaN
+		//NaN属于js保留词，指示某个数不是合法数
+		//尝试用一个非数字字符串进行除法会得到NaN (Not a Number)
+		const num = 100 / 'a';
+		console.log(num); //NaN
+		
+		//数字方法
+		//toString() 以字符串返回数值
+		const num1 = 123;
+		console.log(num1.toString());
+		
+		//toFixed() 返回字符串值，它包含了指定位数小数的数字
+		const num2 = 9.656;
+		console.log(num2.toFixed(0)); //10
+		console.log(num2.toFixed(2)); //9.66
+		console.log(num2.toFixed(4)); //9.6560
+		
+		//toPrecision() 返回字符串值，它包含了指定长度的数字
+		const num3 = 9.656;
+		console.log(num3.toPrecision()); //9.656
+		console.log(num3.toPrecision(2)); //9.7
+		console.log(num3.toPrecision(3)); //9.66
+		
+		//把变量转换为数值
+		//这三种js方法可用于将变量转换为数字
+		//1.Number() 返回数字，由其参数转换而来
+		const str = '10';
+		console.log(Number(str));
+		
+		//2.parseInt() 解析其参数并返回整数
+		console.log(parseInt('10.33')); //10
+		
+		//3.parseFloat() 解析其参数并返回浮点数
+		console.log(parseFloat('10.33')); //10.33
+	</script>
+</html>

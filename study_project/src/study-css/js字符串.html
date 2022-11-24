@@ -13,7 +13,7 @@
 		<title>Document</title>
 	</head>
 	<body>
-		
+		<div id="demo"></div>
 	</body>
 	
 	<script !src = "">
@@ -32,7 +32,7 @@
 		console.log(line2);
 		
 		//也可以在字符串中添加转义字符来添加引号
-		const line3 = "my name is \"frank\""
+		const line3 = "my name is \"frank\"";
 		console.log(line3);
 		
 		//字符串的长度
@@ -52,53 +52,68 @@
 		console.log(str3.includes('canyon')); //true
 		console.log(str3.includes('ny')); //true
 		console.log(str3.includes('Ny')); //true
-		console.log(str3.includes('y', 10)); //false
-			
+		console.log(str3.includes('y' , 10)); //false
+		
 		//valeOf() 返回String对象得到原始值
 		const str4 = '1ord';
 		console.log(str4.valueOf()); //1ord 是string
-			
+		
 		//toLowerCase() 把字符串转换为小写
 		//toUpperCase() 把字符串转换为大写
 		const str5 = 'Arizona';
 		console.log(str5.toLowerCase());
 		console.log(str5.toUpperCase());
-			
+		
 		//trim() 去除字符串两边的空白
 		const str6 = '  bianchi  ';
 		console.log(str6.trim());
-			
+		
 		//split() 该方法用于把一个字符串分割成字符串数组
 		const str7 = 'abcde';
 		console.log(str7.split('')); //['a', 'b', 'c', 'd', 'e']
 		
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+		
+		//模板字符串
+		//实例
+		const text1 = `Hello World!`;
+		console.log(text1); //Hello World!
+		console.log(typeof text1); //类型是string
+	
+		//模板字符串内使用引号
+		const text2 = `He's often called "Johnny"`;
+		console.log(text2);
+		
+		//模范字符串允许多行字符串
+		const text3 = `The quick
+		brown fox
+		jumps over 
+		the lazy dog`;
+		console.log(text3);
+		
+		//插值
+		//模板字符串提供了一种将变量和表达式插入字符串的简单方法 
+		//该方法称为字符串插值
+		//${....}
+		//模板字符串允许字符串中的变量
+		const firstName = 'Bill';
+		const lastName = 'Gates';
+		const text4 = `Welcome ${firstName} ${lastName}!`;
+		console.log(text4); //Welcome Bill Gates!
+		
+		//模板字符串允许字符串中的表达式
+		const price = 10;
+		const VAT = 0.25;
+		const total = `Total: ${(price * (1 + VAT)).toFixed(2)}`;
+		console.log(total);
+		
+		//HTML模板
+		const content = 'Hello World!'
+		const x = `<li>${content}</li>`;
+		document.getElementById('demo').innerHTML = x;
+		
+		
+		
+		
+	
 	</script>
 </html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>Document</title>
+	</head>
+	<body>
+		
+	</body>
+	<script !src = "">
+		//函数语法
+		`function name(参数1, 参数2, 参数3){
+			要执行的代码
+		}`
+		
+		//实例
+		function myFunction(a, b){
+			return a * b;
+		}
+		
+		//函数返回
+		//当js到达return语句，函数将停止执行
+		//函数通常会计算出返回值，这个返回值会返回给调用者
+		
+		
+		
+		//函数表达式
+		const fn1 = function (a, b){return a * b};
+		
+		//函数提升
+		console.log(fn2(5));
+		
+		function fn2(y){
+			return y * y;
+		}
+		//注意，使用表达式定义的函数不会被提升
+		
+		//自调用函数
+		//实例
+		(function () {
+			console.log('Hello World!');
+		})();
+		
+		//表达式写法的自调用函数
+		const fn3 = function (){
+			console.log('表达式的自调用函数');
+		}();
+	</script>
+</html>

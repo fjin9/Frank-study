@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>Document</title>
+	</head>
+	<body>
+		
+	</body>
+	<script !src = "">
+		//if语句
+		//语法
+		`if(条件){
+			如果条件为 true 时执行的代码
+		}`
+		//实例
+		const score1 = 40;
+		if(score1 < 60){
+			console.log('bad');
+		}
+		
+		//else语句
+		//语法
+		`if(条件){
+			条件为 true 时执行的代码块
+		} else {
+			条件为 false 时执行的代码块
+		}`
+			
+		//实例
+		const score2 = 80;
+		if(score2 < 60){
+			console.log('bad');
+		} else {
+			console.log('good');
+		}
+		
+		//else if语句
+		//语法
+		`if (条件1) {
+			条件1 为 true 时执行的代码块
+		} else if(条件2) {
+			条件1 为 false 而 条件2 为 true 时执行的代码块
+		} else {
+			条件1 和 条件2 同时为 false 时执行的代码块
+		}`
+		
+		//实例
+		const score3 = 100;
+		if(score3 < 60){
+			console.log('bad');
+		} else if(score3 > 60 && score3 < 90){
+			console.log('good');
+		} else {
+			console.log('perfect');
+		}
+		
+		//js switch语句
+		//语法
+		`switch ( 表达式 ){
+			case n:
+				代码块
+				break;
+			case n:
+				代码块
+				break;
+			default:
+				默认代码块
+		}`
+		
+		//实例
+		const day = new Date().getDay();
+		switch ( day ){
+			case 0:
+				console.log('星期天');
+				break;
+			case 1:
+				console.log('星期一');
+				break;
+			case 2:
+				console.log('星期二');
+				break;
+			case 3:
+				console.log('星期三');
+				break;
+			case 4:
+				console.log('星期四');
+				break;
+			case 5:
+				console.log('星期五');
+				break;
+			case 6:
+				console.log('星期六');
+				break;
+			default: 
+				break;
+		}
+		
+		//注意 switch case使用严格比较(===)
+	</script>
+</html>
