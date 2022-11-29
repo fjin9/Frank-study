@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>Document</title>
+	</head>
+	<body>
+		
+	</body>
+	<script !src = "">
+		//回调函数
+		//顺序控制
+		//假设你要进行计算，然后显示结果
+		//你可以调用计算器函数(myCalculator)，并让计算器函数调用显示函数(myDisplayer):
+		function myDisplayer(res){
+			alert(res);
+		};
+		
+		function myCalculator(num1, num2){
+			const sum = num1 + num2;
+			myDisplayer(sum);
+		}
+		
+		//这个例子的问题是你无法阻止计算器函数显示结果
+		
+		//js回调
+		//回调是作为参数传递给另一个函数的函数
+		//使用回调，你可以通过回调调用计算器函数(myCalculator)，并在计算器完成后让计算器函数运行回调
+		function myDisplayer1(res){
+			console.log(res);
+		}
+		
+		function myCalculator1(num1, num2, myCallback) {
+			const sum = num1 + num2
+			myCallback(sum);
+		}
+		
+		myCalculator1(5, 5, myDisplayer1);
+		//在上面的例子中，myDisplayer是函数的名称
+		//它作为参数传递给myCalculatlor()
+		//当你将函数作为参数传递时，请记住不要使用括号
+		//正确：myCalculator(5, 5, myDisplayer);
+		//错误：myCalculator(5, 5, myDisplayer());
+		
+		
+		//箭头函数
+		const myCalculator2 = ((num1, num2, myCallback) => {
+			const sum = num1 + num2;
+			myCallback(sum);
+		});
+		
+		myCalculator2(6, 7, myDisplayer1);
+		
+		
+		
+		//test
+		const test1 = function (abc) {
+			abc('Hello World!')
+		};
+		
+		test1(function (word) {
+			console.log(word);
+		});
+		
+		//回调函数写法
+		//操作两个参数
+		const test2 = ((abc) => {
+			abc('Hello World1', 'Hello World2');
+		});
+		
+		test2((word1, word2) => {
+			console.log(word1, word2);
+		});
+		
+		//同一个字符串执行两种不同操作
+		const test3 = ((abc, def) => {
+			abc('Hello World!');
+			def('Hello, World!');
+		});
+		
+		test3((word) => {console.log('这是第一个操作: ' + word)}, (word) => {console.log('这是第二个操作: ' + word)});
+		
+		
+	</script>
+</html>

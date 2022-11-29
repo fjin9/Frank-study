@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>Document</title>
+	</head>
+	<body>
+		
+	</body>
+	<script !src = "">
+		//块级作用域: const 与 let
+		//const 定义常量，常量不可重新赋值，一般只用于读取不用于修改时使用
+		const a = 1;
+		//a = 2 //错误，不可重新赋值
+		
+		//但是要清楚只是栈内存不可变，堆内存可以进行修改，也就是const声明的数组和对象还是可以随意添加内容或删除内容的
+		const arr = [];
+		//arr = [1]; //错误，不可重新赋值
+		arr.push(1) //正确
+		console.log(arr);
+		const obj = {};
+		//obj = {name: 'name'} //错误，不可重新赋值
+		obj.name = 'name' //正确
+		console.log(obj);
+			
+		//let 声明可变量
+		let a1 = 1;
+		a1 = 2;
+		console.log(a1);
+		
+		//只在块级中有作用
+		{
+			let a3 = 1;
+			const b3 = 2;
+			console.log(a3, b3); //1, 2
+		}
+		
+		//console.log(a3); //错误，提示你没有声明
+		//console.log(b3); //错误，提示你没有声明
+		//声明时应优先使用常量const，其余的也就是非常量都是用let即可
+		
+		//箭头函数
+		//这是个普通函数，参数时state，返回值时res
+		function fn(state) {
+			return res
+		}
+		//写成es6的箭头函数就是一下形式:
+		(state) => {
+			return res
+		}
+		//然后如果后面的内容打算直接返回的话直接去掉花括号{},或者使用括号()
+		(state) => res;
+		//或
+		(state) => (res);
+		//如果这里的返回值res也是个箭头函数那你就可以写成
+		(state) => () => {return res}
+		//或
+		(state) => (() => {return res})
+		//单一入参的话，前面的括号()可省略,多参数必须保留
+		state => {return res}
+		(satet1, state2) => {return res}
+		//声明函数一般用变量接收
+		const funName = () => {};
+		funName(); //调用
+		
+		//箭头函数多用于函数入参需要声明匿名函数时
+		//如map函数
+		const arr1 = [1, 2, 3];
+		arr1.map((item) => {})
+		//如setTimeout
+		setTimeout(() => {}, 1000);
+		
+		
+		//解构赋值
+		//从数组或者对象中将栈内存取出来进行使用
+		//一般都是只进行使用不进行修改，所以解构一般都用const声明
+		//在对象中解构时声明的名称与key一一对应
+		const obj1 = {
+			name: 'frank',
+			age: 20
+		}
+		
+		const {name, age} = obj1;
+		console.log(name, age);
+		
+		//在数组中按照位置对应，声明名称可以随意
+		const arr2 = ['frank', 20];
+		const [x, y] = arr2;
+		console.log(x, y);
+		
+		//在对象解构时重命名变量
+		const obj2 = {
+			name: 'ff',
+			age: 22
+		}
+		
+		const {name: newName, age: newAge} = obj2;
+		console.log(newName, newAge);
+		
+		//嵌套解构
+		{
+			const obj3 = {
+				name: 'bbbb',
+				age: 13,
+				info: {
+					address: 'beijing',
+					nation: 'china'
+				}
+			}
+			
+			const {name, age, info: {address}} = obj3;
+			console.log(name, age, address);
+		}
+		
+		
+		//对象属性简写
+		//当变量作为对象的value值时，如果变量与key的名字一样可以简写
+		{
+			const name = '名字';
+			const obj = {
+				name: name
+			}
+			
+			const obj2 = {
+				name //简写
+			}
+			
+			console.log(obj, obj2); //{name: '名字'} {name: '名字'}
+		}
+		
+		//对象展开运算符
+		{
+			const obj = {
+				name: 'frank',
+				age: 18,
+				address: 'beijing'
+			}
+			
+			const {...all} = obj;
+			const {name, ...other} = obj;
+			console.log(all); //{name: 'name', age: 18, address: '北京'}
+			console.log(other); //{age: 18, address: '北京'}
+		}
+		
+		//模板字符串
+		//字符串中需要添加变量时用于代替+号连接的方案
+		const id = 123;
+		const mes = 'id是' + id;
+		const mes2 = `id是${id}`;
+		console.log(mes, mes2);
+	</script>
+</html>

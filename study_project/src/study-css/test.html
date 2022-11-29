@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>Document</title>
+	</head>
+	<body>
+		
+	</body>
+	<script !src = "">
+		//常见的异步请求方法有: fetch, jq的ajax, axios等
+		//认识异步
+		//首先我们得明白请求是一个异步的过程
+		//因为请求需要时间向服务器发送请求和接收请求结果
+		//我们得要等待请求完成然后执行请求完成后的回调，来对接收到的请求结果做处理
+		
+		//fetch(url)
+		//fetch(url) 可以直接发送get请求，而且本身是个promise
+		const url = 'https://unidemo.dcloud.net.cn/api/news';
+	
+		fetch(url).then(res => {
+			console.log(res); //response对象
+		})
+		
+		//返回的是一个response，是它封装好的一个对象，里面返回了请求的一些参数
+		//比较有用的例如status，当status是200的时候，说明发送请求成功了
+		//既然发送了get请求，我们最关心的肯定是请求的数据
+		//response.json()
+		//这个方法也返回一个promise
+		fetch(url).then(response => {
+			return response.json();
+		}).then(res => {
+			console.log(res);
+		});
+		
+		//结合async和await
+		//上面虽然我们已经可以使用fetch来执行回调进行请求了，但是使用回调还是显得代码不够优雅
+		//给函数添加async之后函数就会变成异步函数，其中可以使用await使代码对异步操作promise进行等待
+		//把回调结果返回
+		const fetchAPI = async () =>{
+			const response = await fetch(url);
+			const data = await response.json();
+			console.log(data);
+		}
+		
+		fetchAPI();
+		
+		
+		//异常处理
+		//而且我们可以在第一个response中的状态码来判断能否正常进行下一步
+		const fetchAPI1 = async () => {
+			const response = await fetch(url);
+			if(response.status === 200){
+				const data = await response.json();
+				console.log(data);
+			} else {
+				console.log('请求异常');
+			}
+		}
+		
+		fetchAPI1();
+		//然后为了更严谨的考虑一些意外状况，再套上异常捕获try-catch
+		const fetchAPI2 = async () => {
+			try{
+				const response = await fetch(url);
+				if(response.status === 200){
+					const data = await response.json();
+					console.log(data);
+				} else {
+					console.log('请求异常');
+				}
+			} catch (err) {
+				console.log(err);
+			}
+		}
+		
+		fetchAPI2();
+	</script>
+</html>

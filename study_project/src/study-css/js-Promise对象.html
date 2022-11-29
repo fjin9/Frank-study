@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>Document</title>
+	</head>
+	<body>
+		
+	</body>
+	<script !src = "">
+		//producing code(生产代码) 是需要一些时间的代码
+		//Consuming code(消费代码) 是必须等待结果的代码
+		//Promise是一个js对象，它连接生产代码和消费代码
+		//语法
+		const myPromise = new Promise(function (myResolve, myReject){
+			//producing code(可能需要一些时间)
+			
+			myResolve(); //成功时
+			myReject(); //出错时
+		});
+		
+		//consuming code (必须等待一个兑现的承诺)
+		myPromise.then(
+			function (value){/* 成功时的代码 */},
+			function (error){/* 出错时的代码 */}
+		);
+		
+		//当执行代码获得结果时，它应该调用两个回调之一:
+		// 成功	myResolve(result value)
+		// 出错	myReject(error object)
+		
+		
+		//实例
+		function myDisplayer1(res){
+			console.log('结果: ' + res);
+		}
+		
+		const myPromise1 = new Promise(function (myResolve, myReject){
+			const x = 0;
+			//生成代码(这可能需要一些时间)
+			
+			if(x == 0){
+				myResolve('ok');
+			} else {
+				myReject('Error');
+			}
+		});
+		
+		myPromise1.then(
+			function (vale) {myDisplayer1(vale)},
+			function (error) {myDisplayer1(error)}
+		);
+		
+		//箭头函数
+		const myDisplayer2 = ((res) => {
+			console.log('这次的结果是: ' + res);
+		});
+		
+		const myPromise2 = new Promise((myResolve, myReject) =>{
+			const x = 1;
+			
+			if(x == 1){
+				myResolve(x);
+			} else {
+				myReject('Error');
+			}
+		});
+		
+		myPromise2.then(
+			(value) => {myDisplayer2(value)},
+			(error) => {myDisplayer2(error)}
+		);
+		
+		
+		
+		//js promise 实例
+		//等待超时
+		//使用回调的例子
+		setTimeout(function () {
+			myFn('hola!');
+		}, 3000);
+		
+		function myFn(value) {
+			console.log(value);
+		};
+		//使用promise的例子
+		const myPromise3 = new Promise((myResolve, myReject) => {
+			setTimeout(() => {myResolve('Hola!')}, 3000);
+		});
+		
+		myPromise3.then((value) => {
+			console.log(value);
+		})
+		
+		
+	</script>
+</html>

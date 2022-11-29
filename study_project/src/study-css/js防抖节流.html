@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>Document</title>
+	</head>
+	<body>
+		<button onclick="comment3()">发表评论</button>
+	</body>
+	<script !src = "">
+		const commentAPI = () => {
+			//我们使用延迟模拟异步请求
+			setTimeout(() => {
+				const div = document.createElement('div');
+				div.innerText = 'hello';
+				document.body.appendChild(div);
+			}, 1000);
+		}
+		
+		const comment = () =>{
+			//请求发布评论api
+			commentAPI();
+		}
+		
+		//我们希望的是用户不要在请求还在进行的时候，频繁的重复发送请求，这个时候就需要防抖节流了
+		//核心: 设置延迟，短时间高频率触发只有最后一次触发成功
+		//解释: 防抖指的是设置延时器，比方说我点击之后设置一个1s的延迟，1s后开始上传
+		//如果在1s之中再次点击该事件，那么这个延迟被清除，重置1s的延迟，也就是还没开始上传你得重新等待1s
+		//防抖
+		const commentAPI2 = () => {
+			setTimeout(() => {
+				const div = document.createElement('div');
+				div.innerText = 'hello';
+				document.body.appendChild(div);
+			}, 1000);
+		}
+		
+		let later;
+		
+		const comment2 = () => {
+			if(later){
+				clearTimeout(later)
+			}
+			
+			later = setTimeout(() =>{
+				commentAPI2()
+			}, 1000);
+		} 
+		
+		
+		//节流
+		//核心：设置状态锁，短时间高频率触发只有第一次会触发成功
+		//解释：节流是设置状态锁，比如设置一个key作为锁，锁一开始的状态是关闭的，我们将key设置为false
+		//当你点击的时候，会对key进行判断，如果发现key为false，未上锁，那么开始请求，并且于此同时给key上锁，将flag设置为true
+		//然后这时候你继续点击请求的时候，同样要判断key，发现上锁了，你怎么点击页没用
+		//然后什么时候再将锁关闭呢?在你接口返回给前端，提示你已经上传完毕之后，再将key关闭设置为false，你就可以再次提交了
+		let key = false;
+		const commentAPI3 = () =>{
+			setTimeout(() => {
+				const div = document.createElement('div');
+				div.innerText = 'hello';
+				document.body.appendChild(div);
+				
+				//请求结束，解锁
+				key = false;
+			}, 1000);
+		}
+		
+		const comment3 = () =>{
+			//未上锁开始执行
+			if(!key){
+				key = true;
+				commentAPI3();
+			}
+		}
+	</script>
+</html>

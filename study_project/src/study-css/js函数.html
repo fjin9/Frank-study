@@ -30,8 +30,6 @@
 		//当js到达return语句，函数将停止执行
 		//函数通常会计算出返回值，这个返回值会返回给调用者
 		
-		
-		
 		//函数表达式
 		const fn1 = function (a, b){return a * b};
 		
@@ -53,5 +51,64 @@
 		const fn3 = function (){
 			console.log('表达式的自调用函数');
 		}();
+		
+		//箭头函数
+		//箭头函数允许使用简短的语法来编写函数表达式
+		//ES5
+		const x1 = function (x, y){
+			return x * y;
+		}
+		
+		//ES6
+		const x2 = (x, y) => x * y;
+		
+		//箭头函数没有自己的this，它们不适合定义对象方法
+		//箭头函数未被提升，它们必须在使用前进行定义
+		//如果函数是单个语句，则只能省略return关键字和大括号，因此，保留它们可能是一个号习惯
+		const x3 = (x, y) => {return x * y};
+		
+		//函数调用
+		//以函数形式调用函数
+		//实例
+		function fn4(a, b) {
+			return a * b;
+		};
+		
+		console.log(fn4(10, 2)); //20
+		
+		//闭包
+		//全局变量
+		//函数能够访问函数内部定义的所有变量
+		function fn5() {
+			var a = 4; //局部变量
+			return a * a;
+		};
+		
+		console.log(fn5()); //16
+		
+		//但是函数也能访问函数外部定义的变量
+		var a = 4; //全局变量
+		
+		function fn6() {
+			return a * a;
+		};
+		
+		console.log(fn6()); //16
+		
+		//js嵌套函数
+		//js中，所有函数都有权访问它们上面的作用域
+		//js支持嵌套函数，嵌套函数可以访问其上的作用域
+		function add(){
+			let counter = 0;
+			
+			function plus() {
+				counter ++
+			}
+			plus();
+			
+			return counter;
+		}
+		
+		console.log(add()); //1
 	</script>
 </html>
