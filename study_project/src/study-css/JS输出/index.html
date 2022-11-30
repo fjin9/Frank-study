@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>JS输出</title>
+	</head>
+	<body>
+		<p id="demo"></p>
+		
+		<script>
+			//JS显示方案
+			//JS能狗以不同方式"显示"数据
+			//使用 window.alert() 写入警告框
+			//使用 document.write() 写入HTML输出
+			//使用 innerHTML 写入HTML元素
+			//使用 console.log() 写入浏览器控制台
+			
+			//1.使用innerHTML
+			document.getElementById('demo').innerHTML = 'Hello World!'
+			
+			//2.使用document.write()
+			document.write('hi');
+			
+			//3.使用window.alert()
+			//可以简写为alert()
+			alert('Welcome!')
+			
+			//4.使用console.log()
+			console.log('Hello World!');
+		</script>
+	</body>
+</html>

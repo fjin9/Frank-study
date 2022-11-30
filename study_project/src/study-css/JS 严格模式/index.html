@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>JS 严格模式</title>
+	</head>
+	<body>
+		<script>
+			//"use strict";定义JS代码应该以"严格模式"执行
+			
+			//声明严格模式
+			//通过在脚本或函数的开头添加"use strict"; 来声明严格模式
+			//在脚本开头进行声明，拥有全局作用域(脚本中的所有代码均以严格模式来执行)
+			"use strict";
+			x = 3.14 //这会引发错误，因为x尚未声明
+		</script>
+	</body>
+</html>

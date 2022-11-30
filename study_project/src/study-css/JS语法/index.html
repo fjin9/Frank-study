@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>JS语法</title>
+	</head>
+	<body>
+		
+		<script>
+			{
+				//如何声明变量
+				var x, y;
+				//如何赋值
+				x = 7; y = 8;
+				//如何计算值
+				z = x + y;
+			}
+			
+			{
+				//JS值
+				//JS语句定义两种类型的值：混合值和变量值
+				//混合值被称为字面量
+				
+				//JS字面量
+				//书写混合值最重要的规则是:
+				//1.写数值有无小数点均可
+				console.log(15.90);
+				console.log(10011);
+				//2.字符串是文本，由双引号或单引号包围
+				console.log("Bill Gates");
+				console.log('Bill Gates');
+				
+			}
+			
+			{
+				//JS变量
+				//在本例中，x被定义为变量，然后x被赋的值是7
+				let x;
+				x = 7;
+				console.log(x); //7
+			}
+			
+			{
+				//JS运算符
+				//JS使用算数运算符(+ - * /)来计算值
+				console.log((7 + 8) * 10); //150
+				
+				//JS使用赋值运算符(=)向变量赋值
+				let x = 7;
+				let y = 8;
+				console.log(x, y); //7 8
+			}
+			
+			{
+				//JS表达式
+				//表达式是值，变量和运算符的组合，计算结果是值
+				console.log(6 * 10); //60
+				
+				//表达式也可以包含变量值
+				const x = 5;
+				console.log(x * 10); //50
+				
+				//值可以是多种类型，比如数值和字符串
+				//例如，"Bill" + " " + "Gates", 计算为"Bill Gates"
+				console.log("Bill" + " " + "Gates");
+			}
+			
+			{
+				//JS对大小写敏感
+				const lastName = 'Gates';
+				const lastname = 'Jobs';
+				console.log(lastName, lastname); //Gates Jobs
+			}
+			
+			{
+				//JS驼峰式命名法
+				//JS程序员倾向于使用以小写字母开头的驼峰大小写
+				const firstName = 'Bill';
+				const lastName = 'Gates';
+				console.log(firstName + " " + lastName);
+				
+				//下划线
+				const first_name = 'Bill';
+				const last_name = 'Gates';
+				console.log(first_name + " " + last_name);
+			}
+		</script>
+	</body>
+</html>

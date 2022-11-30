@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>JS简介</title>
+	</head>
+	<body>
+		<p id="demo"></p>
+		<p id="demo2">Hola</p>
+		<p id="demo3" style="display: none">你好</p>
+		<br>
+		<button onclick="document.getElementById('demo').style = 'color: red'">红色</button>
+		<button onclick="document.getElementById('demo').style = 'color: blue'">蓝色</button>
+		
+		
+		
+		<script>
+			//1.JS能改变HTML内容
+			//getElementById()十多个js HTML方法之一
+			//本例使用该方法来"查找" id = "demo" 的HTML元素，并把元素内容(innerHTML)更改为"Hello JavaScript"
+			document.getElementById('demo').innerHTML = 'Hello JavaScript';
+			//js同时接受双引号和单引号
+			document.getElementById("demo").innerHTML = "Hello JavaScript";
+			
+			//2.JS能改变HTML属性
+			//本例通过改变改变p标签的style属性来改变p标签内字体的颜色
+			//见body的button按钮
+			
+			//3.JS能改变HTML样式(CSS)
+			//改变HTML元素的样式，是改变HTML属性的一种变种
+			document.getElementById('demo').style.fontSize = '25px';
+			
+			//4.JS能隐藏HTML元素
+			//可以通过改变display样式来隐藏HTML元素
+			document.getElementById('demo2').style.display = 'none';
+			
+			//5.JS能显示HTML元素
+			//可以通过改变display样式来显示隐藏的HTML元素
+			document.getElementById('demo3').style.display = 'block';
+		</script>
+	</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>JS使用</title>
+		<script src="myScript.js"></script>
+	</head>
+	<body>
+		<p id="demo"></p>
+		<p id="demo2"></p>
+		<button onclick="myFunction()">点击</button>
+		
+		<!--	在HTML中，JS代码必须位于<script>与</script>标签之间-->
+		<!--	实例-->
+		<script>
+			//把脚本置于<body>元素的底部，可改善显示速度，因为脚本编译会拖慢显示
+			document.getElementById('demo').innerHTML = '我的第一段 JavaScript';
+		</script>
+	</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>JS typeof</title>
+	</head>
+	<body>
+		
+		<script>
+			//在JS中有5中不同的可以包含值的数据类型:
+			//string
+			//number
+			//boolean
+			//object
+			//functio
+			//有6种类型的对象:
+			//Object
+			//Date
+			//Array
+			//Function
+			//Regex
+			//以及2种不能包含值的数据类型
+			//null
+			//undefined
+			
+			//typeof运算符
+			//可以使用typeof运算符来确定JS变量的数据类型
+			console.log(typeof "Bill"); //string
+			console.log(typeof 3.14); //number
+			console.log(typeof NaN); //number
+			console.log(typeof false); //boolean
+			console.log(typeof [1, 2, 3]); //object
+			console.log(typeof {name: 'Bill', age: 19}); //object
+			console.log(typeof new Date()); //object
+			console.log(typeof function (){}); //function
+			console.log(typeof myCar); //undefined
+			console.log(typeof null); //object
+			//注意
+			//NaN的数据类型是数字
+			//null的数据类型是object
+			
+
+		</script>
+	</body>
+</html>

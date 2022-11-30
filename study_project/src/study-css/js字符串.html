@@ -111,8 +111,23 @@
 		const x = `<li>${content}</li>`;
 		document.getElementById('demo').innerHTML = x;
 		
-		
-		
+		//slice()方法
+		//slice()提取字符串的某个部分并在新字符串中返回被提取的部分
+		//该方法设置两个参数：起始索引(开始位置)，终止位置(结束位置)
+		//返回的字符串不包括终止位置的字符
+		//这个例子裁剪字符串中位置7到位置13的片段 
+		{
+			const str = 'Apple, Banana, Mango';
+			const res = str.slice(7,13);
+			console.log(res); //Banana
+		}
+		//如果某个参数为负，则从字符串的结尾开始计数
+		//这个例裁剪字符串中位置-12到位置-6的片段
+		{
+			const str = 'Apple, Banana, Mango'
+			const res = str.slice(-13,-7);
+			console.log(res);
+		}
 		
 	
 	</script>

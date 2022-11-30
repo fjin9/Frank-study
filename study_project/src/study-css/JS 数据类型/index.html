@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>JS 数据类型</title>
+	</head>
+	<body>
+		
+		<script>
+			//JS数据类型
+			//JS变量能够保存多种数据类型: 数值 字符串值 数组 对象等等
+			
+			{
+				//当数值和字符串相加时，JS将把数值视作字符串
+				const x = 911 + 'porsche';
+				console.log(x); //911porsche
+			}
+			
+			//Undefined
+			//在JS中，没有值的变量，其值是undefined
+			//typeof也返回undefined
+			let person;
+			console.log(person); //undefined
+			console.log(typeof person); //undefined
+			
+			//空值
+			//空值与undefined不是一回事
+			//空的字符串变量既有值也有类型
+			let car = '';
+			console.log(car); 
+			console.log(typeof car); //sting
+			
+			//Null
+			//在JS中，null是"nothing"，它被看做不存在的事物
+			//不幸的是，在JS中，null的数据类型是对象
+			//你可以把null在JS中是对象理解为一个bug，它本应是null
+			//你可以通过设置值为null清空对象
+			const g = null;
+			console.log(g); //null
+			console.log(typeof g); //object
+			
+			//Undefined与Null的区别
+			//undefinde和null值相等但类型不同
+			console.log(typeof undefined); //undefined
+			console.log(typeof null); //object
+			
+			console.log(null === undefined); //fasle
+			console.log(null == undefined); //true
+			
+			//原始数据
+			//原始数据值是一种没有额外属性和方法的单一简单数据值
+			//typeof运算符可返回以下原始类型之一
+			//string number boolean undefined
+			console.log(typeof "Bill"); //string
+			console.log(typeof 3.14); //number
+			console.log(typeof false); //boolean
+			console.log(typeof myCar); //undefined
+			
+			//复杂数据
+			//typeof运算符可返回以下两种类型之一
+			//function object
+			//typeof运算符把对象 数组 null返回object
+			//typeof运算符不会把函数返回object
+			typeof {name:'Bill', age:62} //object
+			typeof [1,2,3,4]             //object
+			typeof null                  //object
+			typeof function myFunc(){}   //function
+		</script>
+	</body>
+</html>
