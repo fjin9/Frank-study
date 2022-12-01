@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>JS 数字方法</title>
+	</head>
+	<body>
+		
+		<script>
+			//数字方法
+			{
+				//toString() 以字符串返回数值
+				const num = 123;
+				console.log(typeof num.toString()); //string
+			}
+			
+			{
+				//toFixed() 返回字符串值，它包含了指定位数小数的数字
+				const num = 9.656;
+				console.log(num.toFixed(0)); //10
+				console.log(num.toFixed(2)); //9.66 非常适合处理金钱
+				console.log(num.toFixed(4)); //9.6560
+			}
+			
+			{
+				//toPrecision() 返回字符串值，它包含了指定长度的数字
+				const num3 = 9.656;
+				console.log(num3.toPrecision()); //9.656
+				console.log(num3.toPrecision(2)); //9.7
+				console.log(num3.toPrecision(3)); //9.66
+			}
+			
+			{
+				//把变量转换为数值
+				//这三种js方法可用于将变量转换为数字
+				//Number() 方法
+				//parseInt() 方法
+				//parseFloat() 方法
+				//1.Number() 返回数字，由其参数转换而来
+				const str = '10';
+				console.log(typeof Number(str)); //number
+				console.log(Number(true)); //1
+				console.log(Number(false)); //0
+				console.log(Number('10 20')); //NaN
+				
+				//2.parseInt() 
+				//解析一段字符串并返回数值 允许空格 只返回首个数字
+				//返回整数
+				console.log(parseInt('10.33')); //10
+				console.log(parseInt('10 20')); //10
+				console.log(parseInt('10 yeaers')); //10
+				console.log(parseInt('years 10')); //NaN
+				
+				//3.parseFloat() 
+				//解析一段字符串并返回数值。允许空格。只返回首个数字：
+				//返回浮点数
+				console.log(parseFloat('10.33')); //10.33
+			}
+		</script>
+	</body>
+</html>

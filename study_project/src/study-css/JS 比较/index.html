@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>JS 比较</title>
+	</head>
+	<body>
+		
+		<script>
+			
+			//比较和逻辑运算符用于测试true和false
+			
+			
+			{
+				//1.比较运算符
+				//比较运算符在逻辑语句中，以判定变量或值是否相等
+				const x = 5;
+				//运算符 " == "
+				//等于
+				console.log(x == 8); //false
+				console.log(x == 5); //true
+				console.log(x == '5'); //true
+				
+				//运算符 " === "
+				//值相等并且类型相等
+				console.log(x === 5); //true
+				console.log(x === '5'); //false
+				
+				//运算符 " != "
+				//不相等
+				console.log(x != 8); //true
+				console.log(x != 5); //false
+				console.log(x != '5'); //false
+				
+				//运算符 " !== "
+				//值不相等或类型不相等
+				console.log(x !== 5); //false
+				console.log(x !== '5'); //true
+				console.log(x !== 8); //true
+				
+				//运算符 " > "
+				//大于
+				console.log(x > 8); //false
+				console.log(x > 2); //true
+				
+				//运算符 " < "
+				//小于
+				console.log(x < 8); //true
+				console.log(x < 2); //false
+				
+				//运算符 " >= "
+				//大于或等于
+				console.log(x >= 5); //true
+				
+				//运算符 " <= "
+				//小于或等于
+				console.log(x <= 5); //true
+			}
+			
+			{
+				//2.逻辑运算符
+				//逻辑运算符用于判定变量或值之间的逻辑
+				const x = 6;
+				const y = 3;
+				
+				//运算符 " && "
+				//且
+				console.log(x < 10 && y > 1); //true
+				console.log(x < 10 && y > 4); //false
+				console.log(x < 4 && y > 5); //false
+				
+				//运算符 " || "
+				//或
+				console.log(x < 10 || y > 1); //true
+				console.log(x < 10 || y > 4); //true
+				console.log(x < 4 || y > 5); //false
+				
+				//运算符 " ! "
+				//非
+				console.log(!(x == y)); //true
+			}
+			
+			{
+				//3.三元运算符
+				//JS也包含了可基于某些条件向变量赋值的条件运算符
+				//语法
+				//variablename = (condition) ? value1 : value2
+				
+				//实例
+				const myAge = 20;
+				
+				//问号前面是true返回value1，如果是false返回value2
+				const res = myAge < 18 ? '太年轻' : '足够成熟';
+				console.log(res); //足够成熟
+			}
+			
+			{
+				//4.比较不同的类型
+				//如果将字符串与数字进行比较，那么在做比较时JS会把字符串转换为数值
+				//空字符串将转换为0，非数值字符串将被转换为NaN
+				console.log(2 < 12); //true
+				console.log(2 < '12'); //true
+				console.log(2 < 'Bill'); //false
+				console.log(2 == 'Bill'); //false
+				console.log('2' < '12'); //false
+				console.log('2' > '12'); //true
+				console.log('2' == '12'); //false
+				//当比较两个字符串时，"2"大于"12"，因为(按照字母排序)1小于2
+				//为了确保正确的结果，在比较值前应该把变量转换为合适的类型
+				const age = 23;
+				if (typeof age !== 'number') {
+					console.log("输入错误");
+				} else {
+					console.log((age < 18) ? "太年轻" : "足够成熟");
+				}
+			}
+		</script>
+	</body>
+</html>

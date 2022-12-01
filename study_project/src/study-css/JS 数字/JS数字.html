@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>JS 数字</title>
+	</head>
+	<body>
+		
+		
+		<script>
+			//JS数值是始终时64位的浮点数
+			
+			//小数的最大数是17位，但是浮点的算数并不总是100%精准
+			const x = 0.2 + 0.1
+			console.log(x); // x 将是0.30000000000000004
+			
+			//使用除法有助于解决上面的问题
+			const x2 = (0.2 * 10 + 0.1 * 10) / 10;
+			console.log(x2); //0.3
+			
+			//NaN
+			//NaN属于js保留词，指示某个数不是合法数
+			//尝试用一个非数字字符串进行除法会得到NaN (Not a Number)
+			const num = 100 / 'a';
+			console.log(num); //NaN
+			
+		
+		</script>
+	</body>
+</html>

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>JS 字符串方法</title>
+	</head>
+	<body>
+		
+		
+		<script>
+			//字符串方法和属性
+			{
+				//字符串长度
+				//length属性返回字符串的长度
+				const str = 'frank';
+				console.log(str.length); //5
+			}
+			
+			{
+				//查找字符串中的字符串
+				//indexOf()方法返回字符串中指定文本首次出现的索引(位置)
+				const str = 'My name is frank';
+				console.log(str.indexOf('frank')); //11
+			}
+			
+			{
+				//检索字符串中的字符串
+				//search()方法搜索特定值的字符串，并返回匹配的位置
+				const str = 'My name is frank';
+				console.log(str.search('frank')); //11
+			}
+			
+			{
+				//提取部分字符串
+				//有三种提取部分字符串的方法
+				//slice(start, end)
+				//substring(start, end)
+				//substr(start, length)
+				
+				{
+					//slice()方法
+					//slice()提取字符串的某个部分并在新字符串中返回被提取的部分
+					//该方法设置两个参数：起始索引(开始位置)，终止位置(结束位置)
+					//返回的字符串不包括终止位置的字符
+					//这个例子裁剪字符串中位置7到位置13的片段 
+					
+					const str1 = 'Apple, Banana, Mango';
+					const res1 = str1.slice(7,13);
+					console.log(res1); //Banana
+					
+					//如果某个参数为负，则从字符串的结尾开始计数
+					//这个例裁剪字符串中位置-12到位置-6的片段
+					
+					const res2 = str1.slice(-13,-7);
+					console.log(res2); //Banana
+					
+					//如果省略第二个参数，则该方法将裁剪字符出的剩余部分
+					const res3 = str1.slice(7);
+					console.log(res3); //Banana, Mango
+				}
+				
+				{
+					//substring()方法
+					//substring()类似于slice()
+					//不同之处在于substring()无法接受负的索引
+					const str = 'Apple, Banana, Mango';
+					const res = str.substring(7, 13);
+					console.log(res); //Banana
+					//如果省略第二个参数，则该 substring() 将裁剪字符串的剩余部分
+				}
+				
+				{
+					//substr()方法
+					//substr()类似于slice()
+					//不同之处在于第二个参数规定被提取部分的长度
+					const str = 'Apple, Banana, Mango';
+					const res = str.substr(7, 6);
+					console.log(res);
+				}
+		
+			}
+			
+			{
+				//替换字符串内容
+				//replace()方法用另一个值替换在字符串中指定的值
+				const str = 'My name is frank, frank is a good name';
+				const newStr = str.replace('frank', 'jack');
+				console.log(newStr); //My name is jack, frank is a good name
+				//replace()对大小写敏感
+				
+				//如需执行大小写不敏感的替换，使用正则表达式/i(大小写不敏感)
+				const newStr2 = str.replace(/FRANK/i, 'kate');
+				console.log(newStr2); //My name is kate, frank is a good name
+				
+				//如需替换所有匹配，请使用正则表达式的g标志(用于全局搜索)
+				const newStr3 = str.replace(/frank/g, 'kate');
+				console.log(newStr3); //My name is kate, kate is a good name
+			}
+			
+			{
+				//转换为大写和小写
+				//toLowerCase() 把字符串转换为小写
+				//toUpperCase() 把字符串转换为大写
+				const str5 = 'Arizona';
+				console.log(str5.toLowerCase()); //arizona
+				console.log(str5.toUpperCase()); //ARIZONA
+			}
+			
+			{
+				//concat()方法
+				//concat()连接两个或多个字符串
+				const str1 = 'Hello';
+				const str2 = 'World';
+				const str3 = str1.concat(" ", str2, "!");
+				console.log(str3); //Hello World!
+			}
+			
+			{
+				//String.trim()
+				//trim()去除字符串两边的空白
+				const str = '  bianchi  ';
+				console.log(str.trim()); //bianchi
+			}
+			
+			{
+				//提取子字符串字符
+				//这是两个提取字符串字符的安全方法
+				// charAt(position)
+				// charCodeAt(position) 不了解
+				
+				//chartAt() 返回指定位置的字符
+				const str2 = 'canyon';
+				console.log(str2.charAt(2)); //n
+			}
+			
+			{
+				//split() 该方法用于把一个字符串分割成字符串数组
+				const str7 = 'abcde';
+				console.log(str7.split('')); //['a', 'b', 'c', 'd', 'e']
+			}
+			
+			{
+				//includes() 
+				//用于判断字符串是否包含指定的子字符串 
+				//注意区分大小写
+				//接收两个参数 要查找的字符串 开始查找的位置(可选)
+				const str = 'grand canyon state';
+				console.log(str.includes('canyon')); //true
+				console.log(str.includes('ny')); //true
+				console.log(str.includes('Ny')); //true
+				console.log(str.includes('y' , 10)); //false
+			}
+		</script>
+	</body>
+</html>

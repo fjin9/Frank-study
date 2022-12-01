@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>JS 随机</title>
+	</head>
+	<body>
+		
+		<script>
+			
+			//Math.random() 返回0(包括)至1(不包括)之间的随机数
+			//Math.random() 总是返回小于1的数
+			
+			{
+				//JS随机整数
+				//返回0-9之间的数
+				const num1 = Math.floor(Math.random() * 10);
+				console.log(num1);
+				
+				//返回0-10之间的数
+				const num2 = Math.floor(Math.random() * 11);
+				console.log(num2); 
+				
+				//返回1-10之间的数
+				const num3 = Math.floor(Math.random() * 10) + 1;
+				console.log(num3);
+			}
+			
+			{
+				//一个适当的随机函数
+				//这个JS函数始终返回介于min(包括)和max(不包括)之间的随机数
+				function getRandom1(min, max){
+					return Math.floor(Math.random() * (max - min)) + min;
+				}
+				console.log(getRandom1(0,10));
+				
+				//这个JS函数始终返回介于min和max(都包括)之间的随机数
+				function getRandom2(min, max){
+					return Math.floor(Math.random() * (max - min + 1)) + min;
+				}
+				console.log(getRandom2(0,10));
+			}
+		</script>
+	</body>
+</html>

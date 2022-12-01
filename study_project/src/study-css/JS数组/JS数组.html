@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>JS 数组</title>
+	</head>
+	<body>
+		
+		<script>
+			
+			//1.创建数组
+			//方法1 常规方法
+			var myCars = new Array();
+			myCars[0] = 'BMW';
+			myCars[1] = 'Audi';
+			myCars[2] = 'Toyota';
+			myCars[3] = 'Lotus';
+			
+			console.log(myCars);
+			
+			//方法2 简洁方法
+			var myPets = new Array('cat', 'dog', 'bird');
+			console.log(myPets);
+			
+			//方法3 数组字面量
+			var myDevice = ['iPhone', 'laptop', 'air pods', 'apple watch'];
+			console.log(myDevice);
+			
+			//在一个数组中可以有不同的对象
+			const myAry = [
+				'string',
+				{
+					name: 'alex',
+					age: 20
+				},
+				[ '1', '2', '3', '4'],
+				function fn(){
+					return 'hello'
+				}
+			];
+			
+			console.log(myAry);
+			
+			//2.访问数组
+			const myFirstCar = myCars[0];
+			console.log(myFirstCar);
+			
+			//3.修改数组元素
+			myCars[0] = 'Nissan';
+			console.log(myCars);
+		</script>
+	</body>
+</html>
