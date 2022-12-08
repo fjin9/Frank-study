@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>JS 闭包</title>
+	</head>
+	<body>
+		<p id="addOneS"></p>
+		
+		
+		<script>
+			
+			//JS变量属于本地或全局作用域
+			//全局变量能够通过闭包实现局部(私有)
+			
+			//全局变量
+			//函数能够访问函数内部定义的所有变量，比如
+			
+			function myFunction(){
+				let a = 4;
+				return a * a;
+			}
+			
+			console.log(myFunction());
+			
+			//但是函数也能访问函数外部定义的变量，比如
+			let a1 = 4;
+			
+			function myFunction1() {
+				return a1 * a1; 
+			}
+			
+			console.log(myFunction());
+			
+			//在最后这个例子中，a是全局变量
+			//在网页中，全局变量属于window对象
+			//全局变量能够被页面中(以及窗口中)的所有脚本使用和修改
+			//在第一个例子中，a是局部变量
+			//局部变量只能用于其被定义的函数内部，对于其他函数和脚本代码来说他是不可见的
+			//拥有相同名称的全局变量和局部变量是不同的变量，修改一个，不会改变其他
+			//不同过关键词var创建的变量总是全局的，即使它们在函数中创建
+			
+			//变量的生命周期
+			//全局变量活得和您的应用程序(窗口，网页)一样久
+			//局部变量活得不长，它们在函数调用时创建，在函数完成后被删除
+			
+			//一个计数器的困境
+			//假设您想使用变量来计数，并且您希望此计数器可用于所有函数
+			//您可以使用全局变量和函数来递增计数器
+			
+			//初始化计数器
+			let counter = 0;
+			//递增计数器的函数
+			function add(){
+				counter += 1;
+			}
+			//调用三次 add()
+			add();
+			add();
+			add();
+			console.log(counter); //此时计数器是3
+			
+			//上述解决方案有一个问题，页面上的任何代码都可以更改计数器，而无需调用add()
+			//对于add()函数，计数器应该是局部的，以防止其他代码更改它
+			
+			{
+				//初始化计数器
+				let counter = 0;
+				//递增计数器的函数
+				function add1(){
+					let counter = 0;
+					counter += 1;
+				}
+				//调用三次 add()
+				add1();
+				add1();
+				add1();
+				console.log(counter);
+				//此时计数器应该是3，但他是0
+			}
+			
+			//他没有用，因为我么显示全局计数器而不是本地计数器
+			//通过让函数返回它，我们可以删除全局计数器并访问本地计数器
+
+			{
+				//递增计数器的函数
+				function add2() {
+					let counter = 0;
+					counter += 1;
+					return counter;
+				}
+				//调用三次 add()
+				console.log(add2()); //1
+				console.log(add2()); //1
+				console.log(add2()); //1
+			}
+			//他没有用，因为我们每次调用函数时都会重置本地计数器
+			//JS内部函数可以解决这个问题
+			
+			//JS嵌套函数
+			//所有函数都有权访问全局作用域
+			//事实上，在JS中，所有函数都有权访问它们"上面"的作用域
+			//JS支持嵌套函数，嵌套函数可以访问其上的作用域
+			//在本例中，内部函数plus()可以访问父函数中的counter计数器变量
+			function add3() {
+				let counter = 0;
+				function plus(){
+					counter += 1;
+				}
+				plus();
+				plus();
+				return counter;
+			}
+			
+			console.log(add3()); //2
+			
+			//这样即可解决计数器困境，如果我们能够从外面访问plus()函数
+			//我们还需要找到只执行一次counter = 0的方法
+			//我们需要闭包(closure)
+			
+			//JS闭包
+			//记得自调用函数吗?这种函数会做什么?
+			const add5 = (() => {
+				let counter = 0;
+				return () => {
+					return counter += 1;
+				}
+			})();
+			console.log(add5); // () => {return counter += 1}
+			console.log(add5()); //1
+			console.log(add5()); //2
+			console.log(add5()); //3
+			
+			//解释
+			//注意：为什么上面这段代码没有直接写的function add(){...}而是把function赋值给了变量add呢?
+			//我们通常会想当然的认为每次调用add()都会重走一遍add()中的代码块，但其实不然
+			//注意add方法中的return，它return的并不是1，2，3这样的数值，而是return了一个方法，并且把这个方法赋值给了add变量
+			//那么在这个function自运行一遍之后，其实最后赋值给add的是return counter += 1这段代码
+			//所以后面每次调用add()其实都是在调用return counter += 1
+			//再结合文章之前所说的，闭包会持有父方法的局部变量并且不会随父方法销毁而销毁，所以这个counter其实就是来自于第一次function执行时创建的变量
+	
+			var tempFunc;
+			var add6 = (function () {
+				var counter = 0;
+				tempFunc = function () { return counter += 1; }
+				return tempFunc
+			})();
+			function myFunction6() {
+				console.log("add === tempFunc : " + (add6 === tempFunc))
+				console.log(add6);
+				document.getElementById("addOneS").innerHTML = add6();
+			}
+			
+			myFunction6();
+			myFunction6();
+		</script>
+	</body>
+</html>

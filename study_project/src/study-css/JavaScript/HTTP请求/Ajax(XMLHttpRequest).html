@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>XMLHttpRequest</title>
+	</head>
+	<body>
+		
+		<script>
+			//通过XMLHtppRequest可以子啊不刷新页面的情况下请求特定URL，获取数据
+			//发送一个HTTP请求，需要创建一个XMLHttpRequest对象，打开一个URL，最后发送请求
+			//当所有这些事务完成后，该对象将会包含一些诸如响应主体或HTTP status的有用信息
+			
+			const reqListener = () => {
+				console.log(JSON.parse(req.response));
+				//XMLHttpRequest.readyState 返回一个无符号短整型数字，代表请求的状态码
+				console.log(req.readyState);
+				//XMLHttpRequest.status 返回一个无符号短整型数字，代表请求的响应状态
+				console.log(req.status);
+			}
+			const req = new XMLHttpRequest();
+			// req.addEventListener("load", reqListener);
+			req.onload = () =>{
+				console.log(req.response);
+				console.log(req.status);
+				console.log(req.responseType);
+				console.log(req.readyState);
+				console.log('-----------------------');
+			}
+			req.onerror = () =>{
+				console.log('error');
+			}
+			req.onprogress = () =>{
+				console.log('progressing');
+				console.log('-----------------------');
+			}
+			req.open("GET", "https://unidemo.dcloud.net.cn/api/news");
+			//XMLHttpRequest.onreadystatechange
+			//只要readyState属性发生变化，就会调用相应的处理函数
+			//该方法不该用于同步的request对象
+			req.responseType = "json";
+			req.send();
+			
+			console.log('请求完成');
+			
+			//方法
+			//XMLHttpRequest.open()
+			//初始化一个新创建的请求，或重新初始化一个请求
+			//语法
+			// xhrReq.open(method, url);
+			// xhrReq.open(method, url, async);
+			// xhrReq.open(method, url, async, user);
+			// xhrReq.open(method, url, async, user, password);
+			//参数
+			//method
+			//要使用的HTTP方法，比如GET POST PUT DELETE等
+			//url
+			//一个DOMString表示要向其发送请求的URL
+			//async(可选)
+			//一个可选的布尔参数，表示是否异步执行操作，默认为true，如果值为false，send()方法直到收到答复前不会返回
+			//如果true，已完成事务的通知可供事件监听器使用
+			//user(可选)
+			//可选的用户名用于认证用途；默认为 null
+			//password(可选)
+			//可选的密码用于认证用途，默认为 null
+			
+			//XMLHttpRequest.send()
+			//发送HTTP请求
+			//如果是异步请求(默认为异步请求)，则此方法会在请求发送后立即返回
+			//如果是同步请求，则此方法直到响应到达后才会返回
+			//该方法接受一个可选参数，其作为请求主体，如果请求方法是GET或者HEAD，则应将请求组合体设hi为null
+			//语法
+			//XMLHttpRequest.send(body)
+			
+			//XMLHttpRequest.setRequestHeader()
+			//设置HTTP请求头部的方法
+			//此方法必须在open()和send()之间调用，如果多次对同一个请求头赋值，只会生成一个合并了多个值的请求头
+			//语法
+			//XMLHttpRequest.setRequestHeader(header, value);
+			//参数
+			//header:属性的名称 value:属性的值
+			
+			//请求类型
+			//通过XMLHttpRequest生成的请求可以有两种方式来获取数据，异步模式或同步模式
+			//请求的类型是由这个XMLHttpRequest对象的open()方法的第三个错那湖是async的值决定的
+			//如果该参数的值为false，则该XMLHttpRequest请求以同步模式进行，否则该过程将以异步模式完成
+			
+			//监听XMLHttpRequest事件以获取响应
+			//这三个事件是最常用的
+			//load - 当请求完成(即使HTTP状态为400或500等)，并且响应已完全下载
+			//error - 当无法发出请求，离离如网络中断或者无效的URL
+			//progress - 在下载响应期间定期触发，报告已经下载了多少
+			
+			//响应类型
+			//我们可以使用XMLHttpRequest.responseType属性来设置响应格式
+			// ""(默认) - 响应格式为字符串
+			// "text" - 响应格式为字符串
+			// "arraybuffer" - 响应格式为ArrayBuffer
+			// "blob" - 响应格式为XML document
+			// "json" - 响应格式为JSON
+			//注意
+			//在旧的脚本中，你可能会看到XMLHttpRequest.responseText，甚至会看到XMLHttpRequest.responseXML属性
+			//它们是由于历史原因而存在的，以获取字符串或XML文档
+			//如今我们应该在XMLHttpRequest.responseType中设置格式，然后就能通过XMLHttpRequest.response获取数据了
+			
+			//readyState
+			//XMLHttpRequest的状态会随着它的处理进度变化而变化
+			//UNSENT = 0 初始状态
+			//OPENED = 1 open被调用
+			//HEADERS_RECEIVED = 2 接收到response header
+			//LOADING = 3 响应正在被加载(接收到一个数据包)
+			//DONE = 4 请求完成
+			
+			
+			//我们可以使用readystatechange事件来跟踪它们
+			// req.onreadystatechange = () =>{
+			// 	if(req.readyState === 3){
+			// 		console.log('加载中');
+			// 	}
+			// 	if(req.readyState === 4){
+			// 		console.log('请求完成');
+			// 	}
+			// }
+			//已经被load/error/progress事件处理程序所替代
+			
+			//终止请求(aborting)
+			// req.abort();
+			
+			
+			//POST请求
+			//使用JSON.stringify并以字符串形式发送
+			//只是，不要忘记设置header Content-Type: application/json
+			//只要有了它，很多服务端框架都能自动解码JSON
+			const request_post = new XMLHttpRequest();
+			const data = JSON.stringify({
+				username: "admin",
+				password: "123456"
+			});
+			request_post.open("POST", "https://www.fastmock.site/mock/a9a9b537d91659fa53583898035304e6/_demo01/api/post");
+			request_post.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+			request_post.send(data);
+			request_post.responseType = "json";
+			request_post.onload = () =>{
+				console.log(request_post.response);
+				console.log('-----------------------');
+			}
+			
+			//GET请求
+			const request_get = new XMLHttpRequest();
+			request_get.open("GET", "https://www.fastmock.site/mock/a9a9b537d91659fa53583898035304e6/_demo01/api/login");
+			request_get.responseType = "json";
+			request_get.send();
+			request_get.onload = () =>{
+				console.log(request_get.response);
+				console.log('-----------------------');
+			}
+		</script>
+	</body>
+</html>

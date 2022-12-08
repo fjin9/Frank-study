@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>JS 堆与栈内存的释放</title>
+	</head>
+	<body>
+		
+		<script>
+			//计算机的内存是固定的，我们所有开辟的内存都在占用计算机的资源，当计算机内存消耗过多，性能也就越来越卡
+			//函数执行就会形成栈内存(从内存中分配的一块空间)，如果内存都不销毁，很容易就会导致栈内存移除
+			//所以JS中一个重要的性能优化点：减少内存的使用
+			//释放堆内存 释放栈内存
+			
+			//堆内存(HEAP)
+			//堆内存是用来存储引用数据类型值的
+			//例如：创建函数和创建对象，就是开辟一个堆内存，把代码字符串或者键值对存储到堆内存中
+			
+			//栈内存(STACK)
+			//栈内存是用来执行代码和存储基本类型值的(创建的变量也存栈里面了)
+			//不仅全局代码执行
+			//而且函数执行，最后也都会进栈执行的
+			//基于ES6中的let/const形成的块作用域也是栈内存
+			
+			//堆内存释放
+			
+		</script>
+	</body>
+</html>

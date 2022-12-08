@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>Fetch-实例</title>
+	</head>
+	<body>
+		
+		<script>
+			//GET请求
+			const url_get = "https://www.fastmock.site/mock/a9a9b537d91659fa53583898035304e6/_demo01/api/login";
+			fetch(url_get)
+			.then(response => response.json())
+			.then(data => {
+				console.log(data);
+				console.log("请求成功");
+				console.log('---------------------------------------------');
+			})
+			.catch(err => {
+				console.log(err);
+				console.log("请求失败");
+				console.log('---------------------------------------------');
+			})
+			
+			//POST请求
+			const url_post = "https://www.fastmock.site/mock/a9a9b537d91659fa53583898035304e6/_demo01/api/post";
+			fetch(url_post, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					username: "admin",
+					password: "123456"
+				})
+			}).then(response => response.json())
+			.then(data => {
+				console.log(data);
+				console.log("请求成功");
+				console.log('---------------------------------------------');
+			})
+			.catch(err => {
+				console.log(err);
+				console.log("请求失败");
+				console.log('---------------------------------------------');
+			})
+			
+			//GET请求
+			const request_get = async () => {
+				const response = await fetch(url_get);
+				try {
+					if(response.status === 200){
+						const data = await response.json();
+						console.log(data);
+						console.log("请求成功");
+						console.log('---------------------------------------------');
+					} else {
+						console.log("请求异常");
+					}
+				} catch(err){
+					console.log(err);
+				}
+			}
+			
+			request_get(); //调用
+			
+			//POST请求
+			const request_post = async () =>{
+				const response = await fetch(url_post,{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({
+						username: "admin",
+						password: "123456"
+					})
+				})
+				try {
+					if(response.status === 200){
+						const data = await response.json();
+						console.log(data);
+						console.log("请求成功");
+						console.log('---------------------------------------------');
+					} else {
+						console.log("请求异常");
+					}
+				} catch ( err ){
+					console.log(err);
+				}
+			}
+			
+			request_post(); //调用
+		</script>
+	</body>
+</html>

@@ -50,6 +50,44 @@
 			}
 			
 			console.log(myFunction()); //window对象
+			
+			
+			
+			//this的指向
+			//1.普通函数指向函数的调用者：有个简单的方法就是看函数前面有没有点，如果有点，那么就指向点前面的那个值
+			//2.箭头函数指向函数所在的作用域:注意理解作用域，只有函数的{}构成作用域,对象的{}以及if(){}都不构成作用域
+			const obj = {
+				name: 'objName',
+				say(){
+					console.log(this.name);
+				},
+				read: () => {
+					console.log(this.name);
+				}
+			}
+			
+			obj.say(); //objName
+			obj.read(); //undefined
+			
+			//普通函数，调用者是obj，所以结果是objName;也是理解say()是普通函数，前面有点，所以this指向obj
+			//箭头函数，this指向函数所在的作用域，当前的作用域为全局环境，所以this.name为undefined
+			//举下面的例子更清楚的了解一下箭头函数this的指向,箭头函数所在的作用域是普通函数say,say()的调用者是obj
+			const obj2 = {
+				say: function () {
+					setTimeout(() =>{
+						console.log(this);
+					})
+				}
+			}
+			obj2.say(); //this指向的是普通函数say
+			
+			//补充知识点
+			//浏览器默认的this为window
+			function test() {
+				console.log(this);
+			}
+			test(); //window
+	
 		</script>
 	</body>
 </html>

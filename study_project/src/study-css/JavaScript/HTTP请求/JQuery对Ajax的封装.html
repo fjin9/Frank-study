@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>JQuery对Ajax的封装</title>
+	</head>
+	<body>
+		
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script>
+			//常用配置
+			//url
+			//发送请求的地址
+			
+			//type
+			//类型: String 请求方式("POST"或"GET")，默认为"GET"
+			//其他HTTP请求方法，如PUT和DELETE也可以使用
+			
+			//success
+			//类型: Function请求成功后的回调函数
+			
+			//error
+			//类型: Function请求失败时调用此函数
+			
+			//dataType
+			// "xml": 返回 XML 文档，可用 jQuery 处理。
+			// "html": 返回纯文本 HTML 信息；包含的 script 标签会在插入 dom 时执行。
+			// "script": 返回纯文本 JavaScript 代码。不会自动缓存结果。除非设置了 "cache" 参数。注意：在远程请求时(不在同一个域下)，所有 POST 请求都将转为 GET 请求。（因为将使用 DOM 的 script标签来加载）
+			// "json": 返回 JSON 数据 。
+			// "jsonp": JSONP 格式。使用 JSONP 形式调用函数时，如 "myurl?callback=?" jQuery 将自动替换 ? 为正确的函数名，以执行回调函数。
+			// "text": 返回纯文本字符串
+			
+			//data
+			//类型: String 使用JSON.stringify转码
+			
+			//async
+			//类型: Boolean 默认值: true
+			//默认设置下，所有请求均为异步请求，如果需要发送同步请求，请将此选项设置为false
+			
+			//contentType
+			//类型: String 默认值: "application/x-www-form-urlencoded"，发送信息至服务器时内容编码类型
+
+			
+			$.ajax({
+				type: "GET", //请求类型
+				dataType: "json", //请求数据返回类型
+				url: "https://www.fastmock.site/mock/a9a9b537d91659fa53583898035304e6/_demo01/api/login", //请求地址
+				success: (res) =>{
+					console.log(res);
+					console.log('请求成功');
+					console.log('--------------------------------------------');
+				}, //请求成功
+				error: (res) =>{
+					console.log(res);
+					console.log('请求异常');
+					console.log('--------------------------------------------');
+				}, //请求失败
+			})
+			
+			$.ajax({
+				type: "POST",
+				dataType: "json",
+				url: "https://www.fastmock.site/mock/a9a9b537d91659fa53583898035304e6/_demo01/api/post",
+				contentType: "application/json", //设置参数类型
+				data: JSON.stringify({
+					username: "admin",
+					password: "123456"
+				}), //传递参数
+				success: (res) =>{
+					console.log(res);
+					console.log("请求成功");
+					console.log('--------------------------------------------');
+				},
+				error: (res) =>{
+					console.log(res);
+					console.log('请求失败');
+				}
+			})
+		</script>
+	</body>
+</html>

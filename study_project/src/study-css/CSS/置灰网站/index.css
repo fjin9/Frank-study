@@ -1,0 +1,50 @@
+p{
+	color: red;
+}
+
+p:hover{
+	cursor: pointer;
+	font-size: 20px;
+	transition: all .1s linear;
+}
+
+img:hover{
+	cursor: pointer;
+}
+
+/*全网站置灰*/
+/*html{*/
+/*	!*filter: grayscale(.95);*!*/
+/*	-webkit-filter: grayscale(.95);*/
+/*}*/
+
+
+/*使用backdrop-filter实现首屏置灰遮罩*/
+html {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: scroll;
+}
+html::before {
+	content: "";
+	position: absolute;
+	inset: 0; /*等同于top: 0; right: 0; bottom: 0; left: 0;*/
+	backdrop-filter: grayscale(95%);
+	z-index: 10;
+	pointer-events: none;
+}
+
+/*
+position: absolute;
+inset: 0;
+这样写的目的是让这个层充满整个屏幕
+一般做遮罩层的时候用 
+*/
+
+/*
+在使用上述方法实现首屏置灰，因为叠加了一层遮罩效果在上面，
+那这层遮罩下方的所有交互都将失效，譬如hover click等
+解决方法是给这层遮罩添加上pointer-event: none 让这层遮罩不阻挡事件的点击交互
+*/
+

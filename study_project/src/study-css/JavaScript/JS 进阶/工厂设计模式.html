@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>JS 单列/工厂设计模式</title>
+	</head>
+	<body>
+		
+		<script>
+			//需求：我们期望能够把描述一个十五的相关信息能够分组(或分类)来管理
+			//此时对象数据类型就起到了很大的作用
+			const person1 = {
+				name: 'zs',
+				age: 25
+			};
+			
+			const person2 = {
+				name: 'ls',
+				age: 28
+			};
+			//分组后，每一组中额键值对都是私有的，即使两组之间有相同名字的属性，也不会冲突，大大解决了全局变量污染的文图
+			//这种分组管理的概念，就是JS中最早的单列设计模式思想
+			
+			//1.单例设计模式
+			//定义
+			//基于对象数据类型，把描述当前事务的属性和方法统一放在一起分组管理，能够减少全局变量污染，这种JS设计模式就是单列设计模式
+			
+			//特点
+			//每一个对象都是一个单独的实例(单独的堆内存)，存储的键值对都是堆中私有的内容，所以两个实例之间不会有任何的冲突
+			//在单列设计模式中，有一些新的概念
+			//const obj = {xxx:xxx , ...}
+			//obj不仅仅是一个变量存储对象(对象名), 也被称为"命名空间"(起始就是给对象的堆内存设置一个obj的名字，堆内存是空间，obj是名字)
+			//把描述当前事务的属性和方法，放到空间中进行分组管理
+			
+			//缺陷
+			//但是每当描述一个事务的信息，需要把对应的键值对都去编写一下，如果重复描述相似事务的信息，不仅需要重做很多事情
+			//而且还会导致代码的冗余
+			{
+				const person1={
+					name:'小明',
+					age:92,
+					sex:'男',
+					score:90
+				};
+				
+				const person2={
+					name:'小刚',
+					age:62,
+					sex:'男',
+					score:85
+				};
+				
+				const person3={
+					name:'小红',
+					age:18,
+					sex:'女',
+					score:100
+				};
+				
+			}
+			
+			//2.工厂设计模式
+			//定义
+			//所谓工厂设计模式，是在需要创建很多"相似实例"的情境下，让我们告别受哦那个创建，而实现工业化批量生产
+			//根据这句话让我们想到 提高开发效率 减少了页面中的冗余代码 低耦合高内聚 函数封装
+			function createPerson(name, age, sex, score, qunzi){
+				const person={};
+				person.name = name;
+				person.age = age;
+				person.sex = sex;
+				person.score = score;
+				if(typeof qunzi !== 'undefined'){
+					person.qunzi = qunzi;
+				}
+				return person
+			}
+			
+			const person5 = createPerson('zs', 23, '男', 90);
+			const person6 = createPerson('ls', 25, '男', 80, 'red');
+			console.log(person6);
+		</script>
+	</body>
+</html>

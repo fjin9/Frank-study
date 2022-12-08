@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>Document</title>
+	</head>
+	<body>
+		
+		
+		<script>
+			
+			//this的指向
+			//在ES5中，this的指向，始终坚持一个原理：this永远指向最后调用它的那个对象
+			//例子1
+			{
+				let name = 'winodws';
+				
+				function a() {
+					let name = 'function';
+					console.log(this.name); //windows
+					console.log(this);
+				}
+				a();
+				console.log(this);
+			}
+			
+			//例子2
+			{
+				let name = 'windows';
+				const a = {
+					name: 'object',
+					fn: function () {
+						console.log(this.name); //object
+						console.log(this);
+					}
+				}
+				
+				a.fn();
+			}
+			
+			//例子3
+			{
+				
+				let name = 'windows';
+				const a = {
+					name: 'object',
+					fn: function () {
+						console.log(this.name);  //windows
+						console.log(this); 
+					}
+				}
+			
+				const f = a.fn;
+				f();
+				
+				//这里a对象的fn方法赋值给了常量f
+			}
+			
+			//例子4
+			{
+				let name = 'windows';
+
+				function fn(){
+					const name = 'function';
+					inner();
+					function inner(){
+						console.log(this.name); //windows
+					}
+				}
+				
+				fn();
+				
+			}
+			
+			//怎么改变this的指向
+			//改变this的指向有以下几种方式
+			//1.使用ES6的箭头函数
+			//2.在函数内部使用_this = this
+			//3.使用apply call bind
+			//4.new实例化一个对象
+			
+			//例子1
+			{
+				let name = 'windows';
+				
+				const a = {
+					name: 'obejct',
+					
+					func1: function (){
+						console.log(this.name); //报错
+					},
+					
+					func2: function (){
+						setTimeout(function (){
+							this.func1()
+						}, 100);
+					}
+				}
+				
+				a.func2();
+				
+				//在不使用箭头函数的情况下，是会报错的，因为最后调用setTimeout的对象时window
+				//但是在window中并没有func1函数
+			}
+			
+			//箭头函数
+			//箭头函数的this始终指向函数定义时的this，而非执行时
+			//箭头函数需要记住这句话: 箭头函数中没有this绑定，必须通过查找作用域链来觉得其值
+			//如果箭头函数被非箭头函数包含，则this绑定的是最近一层非箭头函数的this，否则this为undefined
+			
+			//例子2
+			{
+				let name = 'windows';
+				
+				const a = {
+					name: 'object',
+					func1: function (){
+						console.log(this.name); //object
+					},
+					func2: function () {
+						setTimeout(() =>{
+							this.func1();
+						}, 100);
+					}
+				}
+				
+				a.func2();
+			}
+			
+			//在函数内部使用_this = this
+			//如果不使用ES6，那么这种方式应该是最简单的不会出错的方式了
+			//我们先将调用这个函数的对象保存在变量_this中，然后在函数中都使用这个_this，这样_this就不会改变了
+			
+			//例子
+			{
+				let name = 'windows';
+				
+				const a = {
+					name: 'object',
+					func1: function (){
+						console.log(this.name); //object
+					},
+					func2: function (){
+						const _this = this;
+						setTimeout(function (){
+							_this.func1();
+						}, 100)
+					}
+				}
+				
+				a.func2();
+			}
+			
+			//使用apply
+			//例子
+			{
+				const a = {
+					name: 'object',
+					func1: function (){
+						console.log(this.name); //object
+					},
+					func2: function (){
+						setTimeout(function () {
+							this.func1();
+						}.apply(a), 100);
+					}
+				}
+				
+				a.func2();
+			}
+		</script>
+	</body>
+</html>

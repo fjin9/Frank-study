@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>实践</title>
+	</head>
+	<style>
+		/*整体布局*/
+		/*定宽布局*/
+		/*
+		.wrapper{
+			width: 1200px;
+			margin: 0 auto;
+			background: gainsboro;
+		}
+		 */
+		/*全屏布局*/
+		/*
+		对于现代布局，更多的是全屏布局，其实现在也是提倡这种布局，即使用可随用户设备的尺寸和能力而变化的自适应布局
+		通常而言是左右两栏，左侧定宽，右侧自适应剩余宽度，当然会有一个最小的宽度
+		 */
+		.wrapper{
+			display: flex;
+			flex-direction: column;
+			min-width: 1200px;
+			min-height: 100vh;
+			justify-content: space-between;
+		}
+		
+		.box{
+			display: flex;
+			width: 100%;
+			height: 100%;
+		}
+		
+		.siderbar{
+			flex-basis: 250px;
+			margin-right: 16px;
+			background: #ffca08;
+		}
+		
+		.main{
+			flex-grow: 1;
+			background: rgba(86,98,97,0.32);
+			padding: 24px;
+		}
+		/*
+		底部footer
+		页面存在一个footer页脚部分，如果整个页面的内容高度小于视窗高度，则footer固定在视窗底部
+		如果整个页面的内容高度大于视窗的高度，则footer正常六排布
+		可以使用justify-content: space-between 或者 margin-top: auto
+		 */
+		.footer{
+			margin-top: auto;
+			flex-shrink: 0;
+			height: 30px;
+			background: #ff2b42;
+		}
+		/*
+		处理动态内容-文本超长
+		对于所有接收后端接口字段的文本展示类的界面。都需要考虑全面
+		对于单行文本，使用单行省略
+		对于多行文本，使用超长省略
+		 */
+		.oneLine{
+			width: 200px;
+			background: white;
+			
+			/*只在块级元素生效*/
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		
+		.mutlLine{
+			width: 200px;
+			background: white;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+		}
+		
+		/*
+		处理动态内容-保护边界
+		对于一些动态内容，我们经常使用min/max-width或者min/max-height对容器的高宽限度进行合理的控制
+		我们经常会使用min-width控制按钮的最小宽度
+		当内容比较少的时候是没问题的，但是当内容比较长，就容易出现问题，使用了min-width却没考虑到按钮过长的情况
+		需要配合padding一起
+		 */
+		.btn{
+			display: inline-block;
+			background: white;
+			min-width: 88px;
+			padding: 0 16px;
+			text-align: center;
+		}
+		/*
+		需要考虑0内容展示
+		 */
+		
+		/*
+		图片相关
+		给<img>标签同时写上宽高，可以在图片未加载之前提前占住避免图片从未加载状态到渲染完成状态宽高变化引起的重排问题
+		 */
+		img{
+			width: 100px;
+			height: 100px;
+			object-fit: cover;
+		}
+		
+		/*
+		交互设计优化
+		过度与动画
+		loading效果
+		*/
+		
+		/*
+		滚动优化
+		使用scroll-snap-type优化滚动效果
+		*/
+		.parent{
+			margin-top: 24px;
+			width: 300px;
+			height: 400px;
+			overflow: auto;
+			scroll-snap-type: y mandatory;
+		}
+		
+		.child{
+			width: 300px;
+			line-height: 400px;
+			background: #7b9fff;
+			scroll-snap-align: center;
+			font-size: 100px;
+			text-align: center;
+		}
+		.child:nth-child(2){
+			background: #ffc27a;
+		}
+		.child:nth-child(3){
+			background: #7c4dff;
+		}
+		
+		/*
+		点击交互优化
+		优化手势--不同场景应用不同cursor
+		对于按钮至少有3种不同的cursor，分别是可点击 不可点击 等待中
+		除此之外，还有一些可输入的input框，使用cursor：text
+		对于提示Tips类使用cursor：help，放大缩小图片zoom-in，zoom-out等等
+		 */
+		.pointer{
+			cursor: pointer;
+		}
+		
+		.notAllowed{
+			cursor: not-allowed;
+		}
+		
+		.wait{
+			cursor: wait;
+		}
+		
+		.inputText{
+			cursor: text;
+		}
+		
+		.tips{
+			width: 20px;
+			line-height: 20px;
+			background: white;
+			text-align: center;
+			border-radius: 50%;
+			cursor: help;
+		}
+		
+		img{
+			cursor: zoom-in;
+		}
+		
+		/*
+		使用WAI-ARIA规范增强语义 -- div等非可获焦元素模拟获焦元素
+		可以使用tabindex属性控制元素是否可以聚焦，以及它是否/在何处参与顺序键盘导航
+		可以使用role属性，来标识元素的语义及作用，譬如使用<div role="button">Save</div>来模拟一个按钮
+		 */
+		
+		
+		.shadow{
+			width: 400px;
+			filter: drop-shadow(2px 4px 8px #3723a1);
+		}
+	</style>
+	<body>
+		<div class="wrapper">
+			<div class="box">
+				<div class="siderbar">siderbar</div>
+				<div class="main">
+					<p class="oneLine">
+						UI, UX Designer & Front-End Developer
+					</p>
+					<span class="mutlLine">
+						UI, UX Designer & Front-End Developer UI, UX Designer & Front-End Developer
+					</span>
+					<br>
+					<span class="btn">
+						Click Click Click
+					</span>
+					<span class="btn">
+						Click
+					</span>
+					<br>
+					<br>
+					<img
+						src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT31KyMy44XPvmVwDW7QbnH6lwfbruEJWnjBp9jakq89Q&s"
+						alt = "图片描述"
+					>
+					<br>
+					<br>
+					<button class="pointer">可点击</button>
+					<br>
+					<br>
+					<button class="notAllowed">不可点击</button>
+					<br>
+					<br>
+					<button class="wait">等待中</button>
+					<br>
+					<br>
+					<input class="inputText"> 
+					<br>
+					<br>
+					<div class="tips">?</div>
+					<br>
+					<br>
+					<img 						
+						src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT31KyMy44XPvmVwDW7QbnH6lwfbruEJWnjBp9jakq89Q&s"
+						alt = "图片描述"
+					>
+					<br>
+					<img
+						class="shadow"
+						src = "https://stackdiary.com/wp-content/uploads/2022/02/logo.png"
+					>
+					<div style="display: flex">
+						<div 
+							style="background: white; padding: 10px; margin-right: 10px"
+							role="button"
+							tabindex="0"
+						>
+							BTN1
+						</div>
+						<div 
+							style="background: white; padding: 10px; margin-right: 10px"
+							role="button"
+							tabindex="0"
+						>
+							BTN1
+						</div>
+					</div>
+					<div class="parent">
+						<div class="child">1</div>
+						<div class="child">2</div>
+						<div class="child">3</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="footer">footer</div>
+		</div>
+	</body>
+</html>

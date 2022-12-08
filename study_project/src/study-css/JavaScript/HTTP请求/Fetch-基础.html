@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>Fetch-基础</title>
+	</head>
+	<body>
+		
+		<script>
+			//fetch()
+			//全局的fetch()方法用于发起获取资源的请求，他返回一个promise
+			//这个promise会在请求响应后被resolve，并传回Response对象
+			//当遇到网络错误时，fetch()返回的promise会被reject，并传回TypeError
+			
+			//fetch配置对象，可选参数有
+			//method：请求使用的方法，如GET POST
+			
+			//headers：请求的头部信息，形式为Headers的对象或包含ByteString值的对象字面量
+			//Content-Type：application/json
+			//现在越来越多的人把它作为请求头，用来告诉服务端消息主体是序列化后的 JSON字符串
+			//实际上，由于 JSON规范的流行，除了低版本 IE之外的各大浏览器都原生支持 
+			//JSON.stringify，服务端语言也都有处理 JSON的函数，使用 JSON不会遇上什么麻烦
+			
+			//body：请求的body信息 (注意GET 或 HEAD方法的请求不包含body信息)
+			
+			//返回值
+			//一个Promise，resolve时回传Response对象
+			
+		</script>
+	</body>
+</html>

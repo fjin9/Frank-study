@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>JS 异步</title>
+	</head>
+	<body>
+		
+		<script>
+			//与其他函数并行运行的函数称为异步
+			
+			//等待超时
+			setTimeout(myFunction, 3000);
+			
+			function myFunction(){
+				console.log('Hola');
+			}
+			
+			//test
+			setTimeout(() => {
+				console.log('Hello!');
+			}, 3000)
+			
+			console.log('hey!');
+			
+			//异步AJAX
+			const xhr = new XMLHttpRequest();
+			xhr.onload = function (){
+				console.log(xhr.responseText);
+			}
+			
+			xhr.onerror = function () {
+				console.log('请求出错');
+			}
+			
+			//发送异步GET请求
+			xhr.open('get', 'https://www.runoob.com/try/ajax/ajax_info.txt', true);
+			xhr.send();
+		</script>
+	</body>
+</html>
