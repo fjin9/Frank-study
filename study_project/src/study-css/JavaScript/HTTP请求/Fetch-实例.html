@@ -99,6 +99,12 @@
 			}
 			
 			request_post(); //调用
+			
+			
+			
+			//为什么会使用Fetch请求而不是原生的XMLHttpRequest请求
+			//因为Fetch请求是异步的，不需要等待
+			//原生的XMLHttpRequest请求是同步的，程序会一直等待请求结果出来后再执行之后的代码
 		</script>
 	</body>
 </html>

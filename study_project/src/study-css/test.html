@@ -14,56 +14,61 @@
 	</head>
 	<body>
 		
-		<p id="username">无</p>
-		<p id="password">无</p>
+<!--		<p id="username">无</p>-->
+<!--		<p id="password">无</p>-->
 		
 		<script>
-			{
-				const url = 'https://www.fastmock.site/mock/a9a9b537d91659fa53583898035304e6/_demo01';
-				const fetchApi = async () => {
-					try{
-						const response = await fetch(url + '/api/login');
-						if(response.status === 200){
-							const data = await response.json();
-							console.log(data);
-							const {username, password} = data;
-							document.getElementById('username').innerText = username;
-							document.getElementById('password').innerText = password;
-						} else {
-							console.log('请求异常');
-						}
-					} catch ( err ) {
-						console.log(err);
-					}
-				}
-				
-				fetchApi();
-			}
+			// {
+			// 	const url = 'https://www.fastmock.site/mock/a9a9b537d91659fa53583898035304e6/_demo01';
+			// 	const fetchApi = async () => {
+			// 		try{
+			// 			const response = await fetch(url + '/api/login');
+			// 			if(response.status === 200){
+			// 				const data = await response.json();
+			// 				console.log(data);
+			// 				const {username, password} = data;
+			// 				document.getElementById('username').innerText = username;
+			// 				document.getElementById('password').innerText = password;
+			// 			} else {
+			// 				console.log('请求异常');
+			// 			}
+			// 		} catch ( err ) {
+			// 			console.log(err);
+			// 		}
+			// 	}
+			//	
+			// 	fetchApi();
+			// }
+			//
+			// {
+			// 	const url = 'https://www.fastmock.site/mock/a9a9b537d91659fa53583898035304e6/_demo01/api/post';
+			// 	const fetchApi = async () => {
+			// 		try{
+			// 			const response = await fetch(url, {
+			// 				method: 'POST',
+			// 				body: JSON.stringify({
+			// 					username: "admin",
+			// 					password: "123456"
+			// 				})
+			// 			});
+			// 			if(response.status === 200){
+			// 				const data = await response.json();
+			// 				console.log(data);
+			// 			} else {
+			// 				console.log('请求异常');
+			// 			}
+			// 		} catch ( err ) {
+			// 			console.log(err);
+			// 		}
+			// 	}
+			//	
+			// 	fetchApi();
+			// }
 			
-			{
-				const url = 'https://www.fastmock.site/mock/a9a9b537d91659fa53583898035304e6/_demo01/api/post';
-				const fetchApi = async () => {
-					try{
-						const response = await fetch(url, {
-							method: 'POST',
-							body: JSON.stringify({
-								username: "admin",
-								password: "123456"
-							})
-						});
-						if(response.status === 200){
-							const data = await response.json();
-							console.log(data);
-						} else {
-							console.log('请求异常');
-						}
-					} catch ( err ) {
-						console.log(err);
-					}
-				}
-				
-				fetchApi();
-			}
+			
+			
+			
+			
 		</script>
 	</body>
 </html>

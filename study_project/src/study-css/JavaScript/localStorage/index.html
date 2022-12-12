@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang = "en">
+	<head>
+		<meta charset = "UTF-8">
+		<meta
+			name = "viewport"
+			content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+		>
+		<meta
+			http-equiv = "X-UA-Compatible"
+			content = "ie=edge"
+		>
+		<title>Document</title>
+	</head>
+	<body>
+		
+		<script src = "https://cdn.bootcss.com/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+		<script>
+			const key = CryptoJS.enc.Utf8.parse("1234123412ABCDEF");  //十六位十六进制数作为密钥
+			const iv = CryptoJS.enc.Utf8.parse('ABCDEF1234123412');   //十六位十六进制数作为密钥偏移量
+
+			//加密方法
+			function Encrypt(word) {
+				let srcs = CryptoJS.enc.Utf8.parse(word);
+				let encrypted = CryptoJS.AES.encrypt(srcs, key, { iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 });
+				return encrypted.ciphertext.toString().toUpperCase();
+			}
+			
+			//解密方法
+			function Decrypt(word) {
+				let encryptedHexStr = CryptoJS.enc.Hex.parse(word);
+				let srcs = CryptoJS.enc.Base64.stringify(encryptedHexStr);
+				let decrypt = CryptoJS.AES.decrypt(srcs , key , {
+					iv : iv ,
+					mode : CryptoJS.mode.CBC ,
+					padding : CryptoJS.pad.Pkcs7
+				});
+				let decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
+				return decryptedStr.toString();
+			}
+
+		
+			
+
+			//在平时的开发中，localStorage sessionStorage的用途是非常多的，在我们的开发中发挥着非常重要的作用
+			//1.登录完成后token的存储
+			//2.用户部分信息的存储，比如昵称  头像 简介
+			//3.一些项目通用参数的存储，例如某个id 某个参数params
+			//5.项目整体的切换状态存储，例如主题颜色 icon风格 语言标识
+			
+			{
+				//普通使用
+				//1.基础变量
+				//当我们存基础变量时
+				localStorage.setItem('基本变量', '这是一个基本变量');
+				//当我们取值时
+				const data = localStorage.getItem('基本变量');
+				console.log(data); //这是一个基本变量
+				//当我们删除时
+				localStorage.removeItem('基本变量');
+			}
+			
+			{
+				//2.引用变量
+				//当我们存引用变量时
+				const data = {
+					name: 'frank',
+					age: 20,
+				}
+				localStorage.setItem('引用变量', JSON.stringify(data));
+				//当我们取值时
+				const res = JSON.parse(localStorage.getItem('引用变量'));
+				console.log(res); //{name: 'frank', age: 20}
+				//当我们删除时
+				localStorage.removeItem('引用变量');
+			}
+			
+			//3.清空
+			localStorage.clear();
+		
+			//暴露出什么问题
+			//1.命名过于简单
+			//比如我们存储用户信息会使用user作为key来存储
+			//存储令牌时使用token作为key来存储其实这是很有问题的，咋们都知道同源的两个项目，它们的localStorage是互通的
+			//两个项目都需要往localStorage中存储一个key为name的值，这样就会互相污染
+			
+			//2.时效性
+			//咋们都知道localStorage sessionStorage这两个的生命周期分别是
+			//localStorage: 除非手动清除，否则一直存在
+			//sessionStorage: 生命结束于当前标签页的关闭或浏览器的关闭
+			//如果我们需要判断token是否过期，就得给token设置一个时效性，或者是1天，或者是7天
+			
+			//3.隐秘性
+			//开发过程中，点击Application就可以看到
+			//但是一旦产品上线了，用户也可以看到缓存中的东西
+			
+			//解决方案
+			//1.命名规范
+			//推荐项目名+当前环境+项目版本+缓存key
+			
+			{
+				//2.expier定时
+				//思路：设置缓存key时，将value包装成一个对象，对象中有相应的时效时段，当下一次想获取缓存值时
+				//判断有无超时，不超时就获取value，超时就删除这个缓存
+				const token = {
+					value: '2313j2ugh3iu124j1k23n',
+					time: Date.now(),
+					expire: 5000,
+				}
+				localStorage.setItem('token', JSON.stringify(token));
+				
+				
+				
+				// console.log(Date.now());
+				// console.log(time + expire);
+				
+				const getToken = () =>{
+					
+					
+					if(localStorage.getItem('token')){
+						const {time, expire} = JSON.parse(localStorage.getItem('token'));
+						if(Date.now() < time + expire){
+							const res = JSON.parse(localStorage.getItem('token'));
+							console.log(res);
+						} else if(Date.now() > time + expire){
+							localStorage.removeItem('token');
+							console.log('token过期了');
+						}
+					} else {
+						return
+					}
+				}
+				
+				const timer = setInterval(() => {
+					getToken()
+				}, 1000);
+
+			}
+			
+			
+			{
+				//3.crypto加密
+				//加密很简单，直接使用crypto-js进行对数据的加密，使用这个库里的encrypt和decrypt进行加密和解密
+				const token1 = {
+					value: 'eqwewqe',
+					time: Date.now(),
+					expire: 5000,
+				}
+				
+				const token1_enc = Encrypt(JSON.stringify(token1));
+				localStorage.setItem('token1', token1_enc);
+				
+				const raw_data = localStorage.getItem('token1');
+				const data = JSON.parse(Decrypt(raw_data));
+				console.log(data);
+			}
+			
+			
+			//localStorage的最大存储大小是5120kb
+		</script>
+	</body>
+</html>
